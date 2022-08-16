@@ -1,0 +1,945 @@
+---
+MainSourceFile:  '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/mysycltest/CUDACore/CachingDeviceAllocator.h'
+Replacements:
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          2311
+    Length:          0
+    ReplacementText: "#include <CL/sycl.hpp>\n#include <dpct/dpct.hpp>\nusing namespace dpct;\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          2451
+    Length:          0
+    ReplacementText: "\n#include <chrono>\nusing namespace dpct;\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          5821
+    Length:          12
+    ReplacementText: 'sycl::queue'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          5834
+    Length:          0
+    ReplacementText: '*'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          5892
+    Length:          11
+    ReplacementText: 'sycl::event'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          5916
+    Length:          0
+    ReplacementText: "\n      std::chrono::time_point<std::chrono::steady_clock> ready_event_ct1;"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          12790
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          13316
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          13759
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          14089
+    Length:          12
+    ReplacementText: 'sycl::queue'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          14102
+    Length:          0
+    ReplacementText: '*'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          14191
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          14407
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          14427
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          14554
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          16127
+    Length:          38
+    ReplacementText: '(int)block_itr->ready_event.get_info<sycl::info::event::command_execution_status>()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          16166
+    Length:          2
+    ReplacementText: '=='
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          16169
+    Length:          17
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          17755
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          17791
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1003:6: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          17819
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          17840
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          17961
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:7: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          17982
+    Length:          47
+    ReplacementText: '(search_key.d_ptr = (void *)sycl::malloc_device(search_key.bytes, get_default_queue()), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          18034
+    Length:          25
+    ReplacementText: '2'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          18492
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          18540
+    Length:          28
+    ReplacementText: "          /*\n          DPCT1026:8: The call to cudaGetLastError was removed because the function call is redundant in DPC++.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          19253
+    Length:          0
+    ReplacementText: "            /*\n            DPCT1003:11: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n            */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          19278
+    Length:          26
+    ReplacementText: '(sycl::free(block_itr->d_ptr, get_default_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          19304
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          19328
+    Length:          0
+    ReplacementText: "            /*\n            DPCT1027:12: The call to cudaEventDestroy was replaced with 0 because this call is redundant in DPC++.\n            */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          19353
+    Length:          40
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          20229
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1000:10: Error handling if-stmt was detected but could not be rewritten.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          20250
+    Length:          0
+    ReplacementText: "            /*\n            DPCT1001:9: The statement could not be removed.\n            */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          20355
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1003:13: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          20383
+    Length:          47
+    ReplacementText: '(search_key.d_ptr = (void *)sycl::malloc_device(search_key.bytes, get_default_queue()), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          20515
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1027:14: The call to cudaEventCreateWithFlags was replaced with 0 because this call is redundant in DPC++.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          20541
+    Length:          73
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          21525
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1003:15: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          21553
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          21585
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          22074
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          22497
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          22730
+    Length:          12
+    ReplacementText: 'sycl::queue'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          22743
+    Length:          0
+    ReplacementText: '*'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          22832
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          22921
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          23351
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          23399
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          23461
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          23481
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          23738
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          25673
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          25709
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:16: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          25735
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          25756
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          25930
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1012:17: Detected kernel execution time measurement pattern and generated an initial code for time measurements in SYCL. You can change the way time is measured depending on your goals.\n        */\n        /*\n        DPCT1024:18: The original code returned the error code that was further consumed by the program logic. This original code was replaced with 0. You may need to rewrite the program logic consuming the error code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          25938
+    Length:          0
+    ReplacementText: "search_key.ready_event_ct1 = std::chrono::steady_clock::now(); \n        "
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          25956
+    Length:          69
+    ReplacementText: '(search_key.ready_event = search_key.associated_stream->submit_barrier(), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          26218
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:19: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          26244
+    Length:          15
+    ReplacementText: '(sycl::free(d_ptr, get_default_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          26259
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          26262
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1027:20: The call to cudaEventDestroy was replaced with 0 because this call is redundant in DPC++.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          26288
+    Length:          40
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27166
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:21: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27192
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27224
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27261
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27689
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27725
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27778
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27865
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27893
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27901
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          27921
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          28488
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          28721
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1003:22: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          28744
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          28772
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          28944
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:23: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          28965
+    Length:          22
+    ReplacementText: '(sycl::free(begin->d_ptr, get_default_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          28987
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          29007
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1027:24: The call to cudaEventDestroy was replaced with 0 because this call is redundant in DPC++.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          29028
+    Length:          36
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          29906
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:25: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          29932
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          29964
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+    Offset:          30001
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+DpctVersion:     2022.0.0
+MainHelperFileName: dpct
+USMLevel:        ''
+FeatureMap:
+  device.hpp:
+    dev_mgr:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        dev_mgr_current_device_id:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/ScopedSetDevice.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/currentDevice.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'dev_mgr::current_device_id'
+          SubFeatureMap:   {}
+        dev_mgr_device_count:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/deviceCount.h'
+          FeatureName:     'dev_mgr::device_count'
+          SubFeatureMap:   {}
+        dev_mgr_select_device:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/ScopedSetDevice.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'dev_mgr::select_device'
+          SubFeatureMap:   {}
+    device_ext:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        device_ext_get_device_info_return_info:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'device_ext::get_device_info'
+          SubFeatureMap:   {}
+        device_ext_queues_wait_and_throw:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/test/world.cu'
+          FeatureName:     'device_ext::queues_wait_and_throw'
+          SubFeatureMap:   {}
+    device_info:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        device_info_get_global_mem_size:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'device_info::get_global_mem_size'
+          SubFeatureMap:   {}
+    get_current_device:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/test/world.cu'
+      FeatureName:     get_current_device
+      SubFeatureMap:   {}
+    get_default_queue:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/allocate_device.cc'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/test/world.cu'
+      FeatureName:     get_default_queue
+      SubFeatureMap:   {}
+  memory.hpp:
+    async_dpct_memcpy:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.cu'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test2/gpuAlgo2.cu'
+      FeatureName:     async_dpct_memcpy
+      SubFeatureMap:   {}
+    async_dpct_memcpy_2d:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.cu'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test2/gpuAlgo2.cu'
+      FeatureName:     async_dpct_memcpy
+      SubFeatureMap:   {}
+    async_dpct_memcpy_3d:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.cu'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test2/gpuAlgo2.cu'
+      FeatureName:     async_dpct_memcpy
+      SubFeatureMap:   {}
+    memcpy_direction:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.cu'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test2/gpuAlgo2.cu'
+      FeatureName:     memcpy_direction
+      SubFeatureMap:   {}
+CompileTargets:  {}
+OptionMap:
+  AsyncHandler:
+    Value:           'true'
+    Specified:       true
+  CommentsEnabled:
+    Value:           'true'
+    Specified:       true
+  CompilationsDir:
+    Value:           '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  CustomHelperFileName:
+    Value:           dpct
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '4'
+    Specified:       true
+  ExtensionFlag:
+    Value:           '4294967295'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  OptimizeMigration:
+    Value:           'true'
+    Specified:       true
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...

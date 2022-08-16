@@ -1,0 +1,180 @@
+---
+MainSourceFile:  '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/mysycltest/plugin-Test1/gpuAlgo1.h'
+Replacements:
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.h'
+    Offset:          51
+    Length:          26
+    ReplacementText: "#include <CL/sycl.hpp>\n#include <dpct/dpct.hpp>\nusing namespace dpct;\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.h'
+    Offset:          167
+    Length:          12
+    ReplacementText: 'sycl::queue'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.h'
+    Offset:          180
+    Length:          0
+    ReplacementText: '*'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+DpctVersion:     2022.0.0
+MainHelperFileName: dpct
+USMLevel:        ''
+FeatureMap:
+  device.hpp:
+    dev_mgr:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        dev_mgr_current_device_id:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/ScopedSetDevice.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/currentDevice.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'dev_mgr::current_device_id'
+          SubFeatureMap:   {}
+        dev_mgr_device_count:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/deviceCount.h'
+          FeatureName:     'dev_mgr::device_count'
+          SubFeatureMap:   {}
+        dev_mgr_select_device:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/ScopedSetDevice.h'
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'dev_mgr::select_device'
+          SubFeatureMap:   {}
+    device_ext:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        device_ext_get_device_info_return_info:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'device_ext::get_device_info'
+          SubFeatureMap:   {}
+        device_ext_queues_wait_and_throw:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/test/world.cu'
+          FeatureName:     'device_ext::queues_wait_and_throw'
+          SubFeatureMap:   {}
+    device_info:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        device_info_get_global_mem_size:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'device_info::get_global_mem_size'
+          SubFeatureMap:   {}
+    get_current_device:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/getCachingDeviceAllocator.h'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/test/world.cu'
+      FeatureName:     get_current_device
+      SubFeatureMap:   {}
+    get_default_queue:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/CachingDeviceAllocator.h'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/CUDACore/allocate_device.cc'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/test/world.cu'
+      FeatureName:     get_default_queue
+      SubFeatureMap:   {}
+  memory.hpp:
+    async_dpct_memcpy:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.cu'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test2/gpuAlgo2.cu'
+      FeatureName:     async_dpct_memcpy
+      SubFeatureMap:   {}
+    async_dpct_memcpy_2d:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.cu'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test2/gpuAlgo2.cu'
+      FeatureName:     async_dpct_memcpy
+      SubFeatureMap:   {}
+    async_dpct_memcpy_3d:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.cu'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test2/gpuAlgo2.cu'
+      FeatureName:     async_dpct_memcpy
+      SubFeatureMap:   {}
+    memcpy_direction:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test1/gpuAlgo1.cu'
+        - '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone/src/cudatest/plugin-Test2/gpuAlgo2.cu'
+      FeatureName:     memcpy_direction
+      SubFeatureMap:   {}
+CompileTargets:  {}
+OptionMap:
+  AsyncHandler:
+    Value:           'true'
+    Specified:       true
+  CommentsEnabled:
+    Value:           'true'
+    Specified:       true
+  CompilationsDir:
+    Value:           '/afs/cern.ch/user/l/lacappel/public/PATATRACK/pixeltrack-standalone'
+    Specified:       true
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  CustomHelperFileName:
+    Value:           dpct
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '4'
+    Specified:       true
+  ExtensionFlag:
+    Value:           '4294967295'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  OptimizeMigration:
+    Value:           'true'
+    Specified:       true
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...
