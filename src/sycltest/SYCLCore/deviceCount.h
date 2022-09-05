@@ -1,18 +1,16 @@
-#ifndef HeterogenousCore_CUDAUtilities_deviceCount_h
-#define HeterogenousCore_CUDAUtilities_deviceCount_h
+#ifndef HeterogenousCore_SYCLUtilities_deviceCount_h
+#define HeterogenousCore_SYCLUtilities_deviceCount_h
 
-#include "CUDACore/cudaCheck.h"
+#include <CL/sycl.hpp>
+#include "SYCLCore/chooseDevice.h"
 
-#include <cuda_runtime.h>
-
+// this function could be deleted
 namespace cms {
-  namespace cuda {
+  namespace sycl {
     inline int deviceCount() {
-      int ndevices;
-      cudaCheck(cudaGetDeviceCount(&ndevices));
-      return ndevices;
+      return enumerateDevices().size();
     }
-  }  // namespace cuda
+  }  // namespace sycl
 }  // namespace cms
 
 #endif
