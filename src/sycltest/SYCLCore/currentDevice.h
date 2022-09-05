@@ -1,18 +1,16 @@
-#ifndef HeterogenousCore_CUDAUtilities_currentDevice_h
-#define HeterogenousCore_CUDAUtilities_currentDevice_h
+#ifndef HeterogenousCore_SYCLUtilities_currentDevice_h
+#define HeterogenousCore_SYCLUtilities_currentDevice_h
 
-#include "CUDACore/cudaCheck.h"
+#include <CL/sycl.hpp>
 
-#include <cuda_runtime.h>
-
+// can be replaed by queue.get_device()
 namespace cms {
-  namespace cuda {
-    inline int currentDevice() {
-      int dev;
-      cudaCheck(cudaGetDevice(&dev));
+  namespace sycl {
+    inline sycl::device currentDevice(sycl::queue q) {
+      auto dev = q.get_device();
       return dev;
     }
-  }  // namespace cuda
+  }  // namespace sycl
 }  // namespace cms
 
 #endif
