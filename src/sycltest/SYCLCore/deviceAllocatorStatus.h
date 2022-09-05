@@ -13,10 +13,10 @@ namespace cms {
         size_t liveRequested = 0;
       };
       /// Map type of device ordinals to the number of cached bytes cached by each device
-      using DeviceCachedBytes = std::map<int, TotalBytes>;
+      using GpuCachedBytes = std::map<int, TotalBytes>;
     }  // namespace allocator
 
-    allocator::DeviceCachedBytes deviceAllocatorStatus();
+    allocator::GpuCachedBytes deviceAllocatorStatus();
   }  // namespace sycl
 }  // namespace cms
 

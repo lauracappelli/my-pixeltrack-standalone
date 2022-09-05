@@ -3,5 +3,5 @@
 #include "getCachingDeviceAllocator.h"
 
 namespace cms::sycl {
-  allocator::DeviceCachedBytes deviceAllocatorStatus() { return allocator::getCachingDeviceAllocator().cacheStatus(); }
+  allocator::GpuCachedBytes deviceAllocatorStatus() { return allocator::getCachingDeviceAllocator().cacheStatus(); }
 }  // namespace cms::sycl
