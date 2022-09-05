@@ -1,5 +1,5 @@
-#ifndef CUDACore_GenericCachingAllocator_h
-#define CUDACore_GenericCachingAllocator_h
+#ifndef SYCLCore_GenericCachingAllocator_h
+#define SYCLCore_GenericCachingAllocator_h
 
 #include <exception>
 #include <iostream>
@@ -54,7 +54,7 @@ public:
   using QueueType = typename Traits::QueueType;
   using EventType = typename Traits::EventType;
 
-  using TotalBytes = cms::cuda::allocator::TotalBytes;
+  using TotalBytes = cms::sycl::allocator::TotalBytes;
   using DeviceCachedBytes = std::map<DeviceType, TotalBytes>;
 
   explicit GenericCachingAllocator(
