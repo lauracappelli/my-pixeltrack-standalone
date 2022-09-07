@@ -1,20 +1,18 @@
-#ifndef HeterogeneousCore_CUDACore_src_getCachingDeviceAllocator
-#define HeterogeneousCore_CUDACore_src_getCachingDeviceAllocator
+#ifndef HeterogeneousCore_SYCLCore_src_getCachingDeviceAllocator
+#define HeterogeneousCore_SYCLCore_src_getCachingDeviceAllocator
 
 #include <iomanip>
 #include <iostream>
 
-#include <cuda_runtime.h>
+#include <CL/sycl.hpp>
+#include "SYCLCore/chooseDevice.h"
 
-#include "CUDACore/cudaCheck.h"
-#include "CUDACore/currentDevice.h"
-#include "CUDACore/deviceCount.h"
-#include "CUDACore/eventWorkHasCompleted.h"
-#include "CUDACore/GenericCachingAllocator.h"
+#include "SYCLCore/GenericCachingAllocator.h"
 
-namespace cms::cuda::allocator {
+namespace cms::sycl::allocator {
   // Use caching or not
   enum class Policy { Synchronous = 0, Asynchronous = 1, Caching = 2 };
+// ??
 #ifndef CUDADEV_DISABLE_CACHING_ALLOCATOR
   constexpr Policy policy = Policy::Caching;
 #elif CUDA_VERSION >= 11020 && !defined CUDADEV_DISABLE_ASYNC_ALLOCATOR
@@ -36,16 +34,12 @@ namespace cms::cuda::allocator {
 
   inline size_t minCachedBytes() {
     size_t ret = std::numeric_limits<size_t>::max();
-    int currentDevice;
-    cudaCheck(cudaGetDevice(&currentDevice));
-    const int numberOfDevices = deviceCount();
-    for (int i = 0; i < numberOfDevices; ++i) {
-      size_t freeMemory, totalMemory;
-      cudaCheck(cudaSetDevice(i));
-      cudaCheck(cudaMemGetInfo(&freeMemory, &totalMemory));
+    auto devices = enumerateDevices();
+    for (auto dev : devices){
+      size_t freeMemory = dev.get_info<info::device::??>();;
+      size_t totalMemory = dev.get_info<info::device::global_mem_cache_size>(); // global_mem_size
       ret = std::min(ret, static_cast<size_t>(maxCachedFraction * freeMemory));
     }
-    cudaCheck(cudaSetDevice(currentDevice));
     if (maxCachedBytes > 0) {
       ret = std::min(ret, maxCachedBytes);
     }
@@ -54,8 +48,8 @@ namespace cms::cuda::allocator {
 
   struct DeviceTraits {
     using DeviceType = int;
-    using QueueType = cudaStream_t;
-    using EventType = cudaEvent_t;
+    using QueueType = sycl::queue;
+    using EventType = sycl::event;
 
     static constexpr DeviceType kInvalidDevice = -1;
 
@@ -83,17 +77,21 @@ namespace cms::cuda::allocator {
 
     static EventType createEvent() {
       EventType e;
-      cudaCheck(cudaEventCreateWithFlags(&e, cudaEventDisableTiming));
+      // ??
+      cudaEventCreateWithFlags(&e, cudaEventDisableTiming);
       return e;
     }
 
-    static void destroyEvent(EventType e) { cudaCheck(cudaEventDestroy(e)); }
+    // ??
+    static void destroyEvent(EventType e) { cudaEventDestroy(e); }
 
+    // ??
     static EventType recreateEvent(EventType e, DeviceType prev, DeviceType next) {
       throw std::runtime_error("CUDADeviceTraits::recreateEvent() should never be called");
     }
-
-    static void recordEvent(EventType e, QueueType queue) { cudaCheck(cudaEventRecord(e, queue)); }
+    
+    // ??
+    static void recordEvent(EventType e, QueueType queue) { cudaEventRecord(e, queue); }
 
     struct DevicePrinter {
       DevicePrinter(DeviceType device) : device_(device) {}
@@ -103,23 +101,11 @@ namespace cms::cuda::allocator {
 
     static DevicePrinter printDevice(DeviceType device) { return DevicePrinter(device); }
 
-    static void* allocate(size_t bytes) {
-      void* ptr;
-      cudaCheck(cudaMalloc(&ptr, bytes));
-      return ptr;
+    static void* allocate(size_t bytes, sycl::queue queue) {
+      return sycl::malloc_device(bytes, queue);
     }
 
-    static void* tryAllocate(size_t bytes) {
-      void* ptr;
-      auto error = cudaMalloc(&ptr, bytes);
-      if (error == cudaErrorMemoryAllocation) {
-        return nullptr;
-      }
-      cudaCheck(error);
-      return ptr;
-    }
-
-    static void free(void* ptr) { cudaCheck(cudaFree(ptr)); }
+    static void free(void* ptr, sycl::queue queue) { sycl::free(ptr, queue); }
   };
 
   inline std::ostream& operator<<(std::ostream& os, DeviceTraits::DevicePrinter const& pr) {
@@ -155,6 +141,6 @@ namespace cms::cuda::allocator {
     static CachingDeviceAllocator allocator{binGrowth, minBin, maxBin, minCachedBytes(), debug};
     return allocator;
   }
-}  // namespace cms::cuda::allocator
+}  // namespace cms::sycl::allocator
 
 #endif
