@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <tuple>
 
 #include <CL/sycl.hpp>
 
@@ -29,5 +30,14 @@ namespace cms::sycltools {
     auto const& device = devices[id % devices.size()];
     std::cerr << "EDM stream " << id << " offload to " << device.get_info<cl::sycl::info::device::name>() << std::endl;
     return device;
+  }
+
+  std::tuple<int, sycl::device> chooseDeviceID(edm::StreamID id) {
+    auto const& devices = enumerateDevices();
+
+    auto const& device = devices[id % devices.size()];
+    std::cerr << "EDM stream " << id << " offload to " << device.get_info<cl::sycl::info::device::name>() << std::endl;
+    
+    return std::make_tuple(id % devices.size(), device);
   }
 }  // namespace cms::sycltools
