@@ -1,0 +1,726 @@
+---
+MainSourceFile:  '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/dpct_output/CachingDeviceAllocator.h'
+Replacements:
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          2351
+    Length:          0
+    ReplacementText: "#include <CL/sycl.hpp>\n#include <dpct/dpct.hpp>\nusing namespace dpct;\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          2491
+    Length:          0
+    ReplacementText: "\n#include <chrono>\nusing namespace dpct;\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          5861
+    Length:          12
+    ReplacementText: 'sycl::queue'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          5874
+    Length:          0
+    ReplacementText: '*'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          5932
+    Length:          11
+    ReplacementText: 'sycl::event'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          5956
+    Length:          0
+    ReplacementText: "\n      std::chrono::time_point<std::chrono::steady_clock> ready_event_ct1;"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          12830
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          13356
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          13799
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          14129
+    Length:          12
+    ReplacementText: 'sycl::queue'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          14142
+    Length:          0
+    ReplacementText: '*'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          14231
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          14447
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          14467
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          14594
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          17795
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          17831
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1003:0: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          17859
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          17880
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          18001
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:1: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          18022
+    Length:          47
+    ReplacementText: '(search_key.d_ptr = (void *)sycl::malloc_device(search_key.bytes, get_default_queue()), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          18074
+    Length:          25
+    ReplacementText: '2'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          18532
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          18580
+    Length:          28
+    ReplacementText: "          /*\n          DPCT1026:2: The call to cudaGetLastError was removed because the function call is redundant in DPC++.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          20269
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1000:4: Error handling if-stmt was detected but could not be rewritten.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          20290
+    Length:          0
+    ReplacementText: "            /*\n            DPCT1001:3: The statement could not be removed.\n            */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          20395
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1003:5: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          20423
+    Length:          47
+    ReplacementText: '(search_key.d_ptr = (void *)sycl::malloc_device(search_key.bytes, get_default_queue()), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          20555
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1027:6: The call to cudaEventCreateWithFlags was replaced with 0 because this call is redundant in DPC++.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          20581
+    Length:          73
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          21565
+    Length:          0
+    ReplacementText: "          /*\n          DPCT1003:7: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n          */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          21593
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          21625
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          22114
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          22537
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          22770
+    Length:          12
+    ReplacementText: 'sycl::queue'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          22783
+    Length:          0
+    ReplacementText: '*'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          22872
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          22961
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          23391
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          23439
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          23501
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          23521
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          23778
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          25713
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          25749
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:8: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          25775
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          25796
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          25970
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1012:9: Detected kernel execution time measurement pattern and generated an initial code for time measurements in SYCL. You can change the way time is measured depending on your goals.\n        */\n        /*\n        DPCT1024:10: The original code returned the error code that was further consumed by the program logic. This original code was replaced with 0. You may need to rewrite the program logic consuming the error code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          25978
+    Length:          0
+    ReplacementText: "search_key.ready_event_ct1 = std::chrono::steady_clock::now(); \n        "
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          25996
+    Length:          69
+    ReplacementText: '(search_key.ready_event = search_key.associated_stream->submit_barrier(), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          26258
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:11: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          26284
+    Length:          15
+    ReplacementText: '(sycl::free(d_ptr, get_default_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          26299
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          26302
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1027:12: The call to cudaEventDestroy was replaced with 0 because this call is redundant in DPC++.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          26328
+    Length:          40
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27206
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:13: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27232
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27264
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27301
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27729
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27765
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27818
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27905
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27933
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27941
+    Length:          11
+    ReplacementText: int
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          27961
+    Length:          11
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          28528
+    Length:          33
+    ReplacementText: 'entrypoint_device = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          29946
+    Length:          0
+    ReplacementText: "        /*\n        DPCT1003:14: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n        */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          29972
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          30004
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+    Offset:          30041
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+DpctVersion:     2022.0.0
+MainHelperFileName: dpct
+USMLevel:        ''
+FeatureMap:
+  device.hpp:
+    dev_mgr:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        dev_mgr_current_device_id:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+          FeatureName:     'dev_mgr::current_device_id'
+          SubFeatureMap:   {}
+        dev_mgr_select_device:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+          FeatureName:     'dev_mgr::select_device'
+          SubFeatureMap:   {}
+    get_default_queue:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/eos/home-l/lacappel/my-pixeltrack-standalone/src/sycltest/SYCLCore/CachingDeviceAllocator.h'
+      FeatureName:     get_default_queue
+      SubFeatureMap:   {}
+CompileTargets:  {}
+OptionMap:
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'true'
+    Specified:       true
+  CompilationsDir:
+    Value:           ''
+    Specified:       false
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  CustomHelperFileName:
+    Value:           dpct
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '4'
+    Specified:       true
+  ExtensionFlag:
+    Value:           '4294967295'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...
