@@ -45,8 +45,10 @@
 #include <mutex>
 
 #include <CL/sycl.hpp>
+#include <dpct/dpct.hpp>
 #include "SYCLCore/deviceAllocatorStatus.h"
 #include "SYCLCore/chooseDevice.h"
+#include <chrono>
 
 /// CUB namespace
 namespace notcub {
@@ -125,11 +127,13 @@ namespace notcub {
     struct BlockDescriptor {
       void *d_ptr;                     // Device pointer
       size_t bytes;                    // Size of allocation in bytes
-      size_t bytesRequested;           // CMS: requested allocation size (for monitoring only)
+      size_t bytesRequested;           // CMS: requested allocatoin size (for monitoring only)
       unsigned int bin;                // Bin enumeration
       int device;                      // device ordinal
-      sycl::queue associated_stream;  // Associated associated_stream
-      sycl::event ready_event;  // Signal when associated stream has run to the point at which this block was freed
+      sycl::queue *associated_stream;  // Associated associated_stream
+      sycl::event ready_event;
+      std::chrono::time_point<std::chrono::steady_clock>
+          ready_event_ct1;  // Signal when associated stream has run to the point at which this block was freed
 
       // Constructor (suitable for searching maps for a specific block, given its pointer and device)
       BlockDescriptor(void *d_ptr, int device)
@@ -138,8 +142,8 @@ namespace notcub {
             bytesRequested(0),  // CMS
             bin(INVALID_BIN),
             device(device),
-            associated_stream(),
-            ready_event() {}
+            associated_stream(nullptr),
+            ready_event(nullptr) {}
 
       // Constructor (suitable for searching maps for a range of suitable blocks, given a device)
       BlockDescriptor(int device)
@@ -148,8 +152,8 @@ namespace notcub {
             bytesRequested(0),  // CMS
             bin(INVALID_BIN),
             device(device),
-            associated_stream(),
-            ready_event() {}
+            associated_stream(nullptr),
+            ready_event(nullptr) {}
 
       // Comparison functor for comparing device pointers
       static bool PtrCompare(const BlockDescriptor &a, const BlockDescriptor &b) {
@@ -332,8 +336,8 @@ namespace notcub {
         int device,                            ///< [in] Device on which to place the allocation
         void **d_ptr,                          ///< [out] Reference to pointer to the allocation
         size_t bytes,                          ///< [in] Minimum number of bytes for the allocation
-        sycl::queue active_stream)             ///< [in] The stream to be associated with this allocation
-    {
+        sycl::queue *active_stream = nullptr)  ///< [in] The stream to be associated with this allocation
+      try {
       // CMS: use RAII instead of (un)locking explicitly
       std::unique_lock<std::mutex> mutex_locker(mutex, std::defer_lock);
       *d_ptr = nullptr;
@@ -341,7 +345,8 @@ namespace notcub {
 
       if (device == INVALID_DEVICE_ORDINAL) {
         // CMS: throw exception on error
-        device = std::get<0>(chooseDeviceID(entrypoint_device));
+        entrypoint_device = dpct::dev_mgr::instance().current_device_id();
+        device = entrypoint_device;
       }
 
       // Create a block descriptor for the requested allocation
@@ -374,7 +379,8 @@ namespace notcub {
           // To prevent races with reusing blocks returned by the host but still
           // in use by the device, only consider cached blocks that are
           // either (from the active stream) or (from an idle stream)
-          if (active_stream == block_itr->associated_stream) {
+          if ((active_stream == block_itr->associated_stream) ||
+              (cudaEventQuery(block_itr->ready_event) != cudaErrorNotReady)) {
             // Reuse existing cache block.  Insert into live blocks.
             found = true;
             search_key = *block_itr;
@@ -416,7 +422,8 @@ namespace notcub {
         // Set runtime's current device to specified device (entrypoint may not be set)
         if (device != entrypoint_device) {
           // CMS: throw exception on error
-          device = std::get<0>(chooseDeviceID(entrypoint_device));
+          entrypoint_device = dpct::dev_mgr::instance().current_device_id();
+          dpct::dev_mgr::instance().select_device(device);
         }
 
         // Attempt to allocate
@@ -443,6 +450,7 @@ namespace notcub {
             // blocking and will synchronize across all kernels executing
             // on the current device
 
+            // SYCL
             // The memory is freed without waiting for commands operating on it
             // to be completed. If commands that use this memory are in-progress
             // or are enqueued the behavior is undefined.
@@ -451,6 +459,8 @@ namespace notcub {
             // CMS: silently ignore errors and pass them to the caller
             sycl::free(block_itr->d_ptr, block_itr->associated_stream);
 
+            //how to destroy the block_itr->ready_event ??
+            
             // Reduce balance and erase entry
             cached_bytes[device].free -= block_itr->bytes;
 
@@ -481,8 +491,8 @@ namespace notcub {
 
         // Create ready event
         // CMS: throw exception on error
-        // ??
-        cudaCheck(error = cudaEventCreateWithFlags(&search_key.ready_event, cudaEventDisableTiming));
+        // DPCT1027:6: The call to cudaEventCreateWithFlags was replaced with 0 because this call is redundant in DPC++.
+        // cudaCheck(error = cudaEventCreateWithFlags(&search_key.ready_event, cudaEventDisableTiming));
 
         // Insert into live blocks
         mutex_locker.lock();
@@ -504,7 +514,7 @@ namespace notcub {
         // Attempt to revert back to previous device if necessary
         if ((entrypoint_device != INVALID_DEVICE_ORDINAL) && (entrypoint_device != device)) {
           // CMS: throw exception on error
-          entrypoint_device = std::get<0>(chooseDeviceID(entrypoint_device));
+          dpct::dev_mgr::instance().select_device(entrypoint_device);
         }
       }
 
@@ -520,6 +530,10 @@ namespace notcub {
                (long long)cached_bytes[device].live);
 
     }
+    catch (sycl::exception const &exc) {
+      std::cerr << exc.what() << "Exception caught at file:" << __FILE__ << ", line:" << __LINE__ << std::endl;
+      std::exit(1);
+    }
 
     /**
      * \brief Provides a suitable allocation of device memory for the given size on the current device.
@@ -531,7 +545,7 @@ namespace notcub {
     void DeviceAllocate(
         void **d_ptr,                          ///< [out] Reference to pointer to the allocation
         size_t bytes,                          ///< [in] Minimum number of bytes for the allocation
-        sycl::queue active_stream)  ///< [in] The stream to be associated with this allocation
+        sycl::queue *active_stream = nullptr)  ///< [in] The stream to be associated with this allocation
     {
       DeviceAllocate(INVALID_DEVICE_ORDINAL, d_ptr, bytes, active_stream);
     }
@@ -543,14 +557,15 @@ namespace notcub {
      * with which it was associated with during allocation, and it becomes available for reuse within other
      * streams when all prior work submitted to \p active_stream has completed.
      */
-    void DeviceFree(int device, void *d_ptr) {
+    void DeviceFree(int device, void *d_ptr) try {
       int entrypoint_device = INVALID_DEVICE_ORDINAL;
       // CMS: use RAII instead of (un)locking explicitly
       std::unique_lock<std::mutex> mutex_locker(mutex, std::defer_lock);
 
       if (device == INVALID_DEVICE_ORDINAL) {
         // CMS: throw exception on error
-        device = std::get<0>(chooseDeviceID(entrypoint_device));
+        entrypoint_device = dpct::dev_mgr::instance().current_device_id();
+        device = entrypoint_device;
       }
 
       // Lock
@@ -595,14 +610,19 @@ namespace notcub {
       // First set to specified device (entrypoint may not be set)
       if (device != entrypoint_device) {
         // CMS: throw exception on error
-          device = std::get<0>(chooseDeviceID(entrypoint_device));
+        entrypoint_device = dpct::dev_mgr::instance().current_device_id();
+        dpct::dev_mgr::instance().select_device(device);
       }
 
       if (recached) {
         // Insert the ready event in the associated stream (must have current device set properly)
         // CMS: throw exception on error
-        // ??
-        cudaEventRecord(search_key.ready_event, search_key.associated_stream);
+        /*
+        DPCT1012:9: Detected kernel execution time measurement pattern and generated an initial code for time measurements in SYCL. You can change the way time is measured depending on your goals.
+        DPCT1024:10: The original code returned the error code that was further consumed by the program logic. This original code was replaced with 0. You may need to rewrite the program logic consuming the error code.
+        */
+        search_key.ready_event_ct1 = std::chrono::steady_clock::now();
+        search_key.ready_event = search_key.associated_stream->submit_barrier();
       }
 
       // Unlock
@@ -634,9 +654,13 @@ namespace notcub {
       // Reset device
       if ((entrypoint_device != INVALID_DEVICE_ORDINAL) && (entrypoint_device != device)) {
         // CMS: throw exception on error
-        entrypoint_device = std::get<0>(chooseDeviceID(entrypoint_device));
+        dpct::dev_mgr::instance().select_device(entrypoint_device);
       }
 
+    }
+    catch (sycl::exception const &exc) {
+      std::cerr << exc.what() << "Exception caught at file:" << __FILE__ << ", line:" << __LINE__ << std::endl;
+      std::exit(1);
     }
 
     /**
@@ -651,7 +675,7 @@ namespace notcub {
     /**
      * \brief Frees all cached device allocations on all devices
      */
-    void FreeAllCached() {
+    void FreeAllCached() try {
       int entrypoint_device = INVALID_DEVICE_ORDINAL;
       int current_device = INVALID_DEVICE_ORDINAL;
       // CMS: use RAII instead of (un)locking explicitly
@@ -664,11 +688,10 @@ namespace notcub {
         // Get entry-point device ordinal if necessary
         if (entrypoint_device == INVALID_DEVICE_ORDINAL) {
           // CMS: silently ignore errors and pass them to the caller
-          if (entrypoint_device = std::get<0>(chooseDeviceID(entrypoint_device)))
+          if (entrypoint_device = dpct::dev_mgr::instance().current_device_id())
             break;
         }
 
-        // ??
         // Set current device ordinal if necessary
         if (begin->device != current_device) {
           current_device = begin->device;
@@ -676,11 +699,9 @@ namespace notcub {
 
         // Free device memory
         // CMS: silently ignore errors and pass them to the caller
-        // ??
-        if (sycl::free(begin->d_ptr, begin->associated_stream))
-          break;
-        if ((error = cudaEventDestroy(begin->ready_event)))
-          break;
+        sycl::free(begin->d_ptr, begin->associated_stream)
+        // ??  
+        cudaEventDestroy(begin->ready_event)
 
         // Reduce balance and erase entry
         cached_bytes[current_device].free -= begin->bytes;
@@ -704,9 +725,13 @@ namespace notcub {
       // Attempt to revert back to entry-point device if necessary
       if (entrypoint_device != INVALID_DEVICE_ORDINAL) {
         // CMS: throw exception on error
-        entrypoint_device = std::get<0>(chooseDeviceID(entrypoint_device));
+        dpct::dev_mgr::instance().select_device(entrypoint_device);
       }
 
+    }
+    catch (sycl::exception const &exc) {
+      std::cerr << exc.what() << "Exception caught at file:" << __FILE__ << ", line:" << __LINE__ << std::endl;
+      std::exit(1);
     }
 
     // CMS: give access to cache allocation status
