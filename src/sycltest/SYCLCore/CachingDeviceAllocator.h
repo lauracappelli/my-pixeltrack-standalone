@@ -131,9 +131,7 @@ namespace notcub {
       unsigned int bin;                // Bin enumeration
       int device;                      // device ordinal
       sycl::queue *associated_stream;  // Associated associated_stream
-      sycl::event ready_event;
-      std::chrono::time_point<std::chrono::steady_clock>
-          ready_event_ct1;  // Signal when associated stream has run to the point at which this block was freed
+      sycl::event ready_event;         // Signal when associated stream has run to the point at which this block was freed
 
       // Constructor (suitable for searching maps for a specific block, given its pointer and device)
       BlockDescriptor(void *d_ptr, int device)
@@ -143,7 +141,7 @@ namespace notcub {
             bin(INVALID_BIN),
             device(device),
             associated_stream(nullptr),
-            ready_event(nullptr) {}
+            ready_event() {}
 
       // Constructor (suitable for searching maps for a range of suitable blocks, given a device)
       BlockDescriptor(int device)
@@ -153,7 +151,7 @@ namespace notcub {
             bin(INVALID_BIN),
             device(device),
             associated_stream(nullptr),
-            ready_event(nullptr) {}
+            ready_event() {}
 
       // Comparison functor for comparing device pointers
       static bool PtrCompare(const BlockDescriptor &a, const BlockDescriptor &b) {
@@ -380,7 +378,8 @@ namespace notcub {
           // in use by the device, only consider cached blocks that are
           // either (from the active stream) or (from an idle stream)
           if ((active_stream == block_itr->associated_stream) ||
-              (cudaEventQuery(block_itr->ready_event) != cudaErrorNotReady)) {
+              ((block_itr->ready_event).get_info<sycl::info::event::command_execution_status>() 
+                != sycl::info::event_command_status::complete)){
             // Reuse existing cache block.  Insert into live blocks.
             found = true;
             search_key = *block_itr;
@@ -458,8 +457,6 @@ namespace notcub {
             // Free device memory and destroy stream event.
             // CMS: silently ignore errors and pass them to the caller
             sycl::free(block_itr->d_ptr, block_itr->associated_stream);
-
-            //how to destroy the block_itr->ready_event ??
             
             // Reduce balance and erase entry
             cached_bytes[device].free -= block_itr->bytes;
@@ -488,11 +485,6 @@ namespace notcub {
           // CMS: throw exception on error
           search_key.d_ptr = sycl::malloc_device(search_key.bytes, search_key.associated_stream);
         }
-
-        // Create ready event
-        // CMS: throw exception on error
-        // DPCT1027:6: The call to cudaEventCreateWithFlags was replaced with 0 because this call is redundant in DPC++.
-        // cudaCheck(error = cudaEventCreateWithFlags(&search_key.ready_event, cudaEventDisableTiming));
 
         // Insert into live blocks
         mutex_locker.lock();
@@ -617,9 +609,11 @@ namespace notcub {
       if (recached) {
         // Insert the ready event in the associated stream (must have current device set properly)
         // CMS: throw exception on error
+        // Captures in search_key.ready_event the contents of stream at the time of this call.
+        // cudaCheck(error = cudaEventRecord(search_key.ready_event, search_key.associated_stream));
         /*
-        DPCT1012:9: Detected kernel execution time measurement pattern and generated an initial code for time measurements in SYCL. You can change the way time is measured depending on your goals.
-        DPCT1024:10: The original code returned the error code that was further consumed by the program logic. This original code was replaced with 0. You may need to rewrite the program logic consuming the error code.
+          DPCT1012:9: Detected kernel execution time measurement pattern and generated an initial code for time measurements in SYCL.
+            You can change the way time is measured depending on your goals.
         */
         search_key.ready_event_ct1 = std::chrono::steady_clock::now();
         search_key.ready_event = search_key.associated_stream->submit_barrier();
@@ -632,8 +626,6 @@ namespace notcub {
         // Free the allocation from the runtime and cleanup the event.
         // CMS: throw exception on error
         sycl::free(d_ptr, associated_stream);
-        // ??
-        cudaEventDestroy(search_key.ready_event);
 
         if (debug)
           // CMS: improved debug message
@@ -700,8 +692,6 @@ namespace notcub {
         // Free device memory
         // CMS: silently ignore errors and pass them to the caller
         sycl::free(begin->d_ptr, begin->associated_stream)
-        // ??  
-        cudaEventDestroy(begin->ready_event)
 
         // Reduce balance and erase entry
         cached_bytes[current_device].free -= begin->bytes;
