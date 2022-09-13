@@ -59,15 +59,10 @@ __global__ void testBasicSoA(float* p) {
 #include <random>
 
 #if defined(__NVCOMPILER) || defined(__CUDACC__)
-#include "CUDACore/requireDevices.h"
 #include "CUDACore/cudaCheck.h"
 #endif
 
 int main() {
-#if defined(__NVCOMPILER) || defined(__CUDACC__)
-  cms::cudatest::requireDevices();
-#endif
-
   float p[1024];
 
   std::uniform_real_distribution<float> rgen(0.01, 0.99);

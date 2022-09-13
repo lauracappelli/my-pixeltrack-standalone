@@ -29,11 +29,12 @@ export CXXFLAGS := -std=c++17 $(HOST_CXXFLAGS) $(USER_CXXFLAGS) -g
 export NVCXX_CXXFLAGS := -std=c++20 -O0 -cuda -gpu=managed -stdpar -fpic -gopt $(USER_CXXFLAGS)
 export LDFLAGS := -O2 -fPIC -pthread -Wl,-E -lstdc++fs -ldl
 export LDFLAGS_NVCC := -ccbin $(CXX) --linker-options '-E' --linker-options '-lstdc++fs'
-export LDFLAGS_NVCXX := -cuda -Wl,-E -ldl
+export LDFLAGS_NVCXX := -cuda -Wl,-E -ldl -gpu=managed -stdpar
 export SO_LDFLAGS := -Wl,-z,defs
 export SO_LDFLAGS_NVCC := --linker-options '-z,defs'
 
 GCC_TOOLCHAIN := $(abspath $(dir $(shell which $(CXX)))/..)
+GCC_TARGET    := $(shell $(CXX) -dumpmachine)
 
 CLANG_FORMAT := clang-format-10
 CMAKE := cmake
@@ -105,8 +106,8 @@ export ROCM_BASE
 export ROCM_DEPS := $(ROCM_LIBDIR)/libamdhip64.so
 export ROCM_HIPCC := $(ROCM_BASE)/bin/hipcc
 HIPCC_UNSUPPORTED_CXXFLAGS := --param vect-max-version-for-alias-checks=50 -Werror=format-contains-nul -Wno-non-template-friend -Werror=return-local-addr -Werror=unused-but-set-variable
-export HIPCC_CXXFLAGS := -fno-gpu-rdc --amdgpu-target=gfx900 $(filter-out $(HIPCC_UNSUPPORTED_CXXFLAGS),$(CXXFLAGS)) --gcc-toolchain=$(GCC_TOOLCHAIN)
-export HIPCC_LDFLAGS := $(LDFLAGS) --gcc-toolchain=$(GCC_TOOLCHAIN)
+export HIPCC_CXXFLAGS := -fno-gpu-rdc --amdgpu-target=gfx900 $(filter-out $(HIPCC_UNSUPPORTED_CXXFLAGS),$(CXXFLAGS)) --target=$(GCC_TARGET) --gcc-toolchain=$(GCC_TOOLCHAIN)
+export HIPCC_LDFLAGS := $(LDFLAGS) --target=$(GCC_TARGET) --gcc-toolchain=$(GCC_TOOLCHAIN)
 # flags to be used by GCC when compiling host code that includes hip_runtime.h
 export ROCM_CXXFLAGS := -D__HIP_PLATFORM_HCC__ -D__HIP_PLATFORM_AMD__ -I$(ROCM_BASE)/include -I$(ROCM_BASE)/hiprand/include -I$(ROCM_BASE)/rocrand/include
 export ROCM_LDFLAGS := -L$(ROCM_LIBDIR) -lamdhip64
@@ -246,7 +247,7 @@ else
     export KOKKOS_DEVICE_CXXFLAGS := $(KOKKOS_NVCC_COMMON) $(CUDA_CXXFLAGS) $(USER_CUDAFLAGS)
     export KOKKOS_DEVICE_TEST_CXXFLAGS := $(CUDA_TEST_CXXFLAGS)
   else ifeq ($(KOKKOS_DEVICE_PARALLEL),HIP)
-    KOKKOS_CMAKEFLAGS += -DCMAKE_CXX_COMPILER=$(ROCM_HIPCC) -DCMAKE_CXX_FLAGS="--gcc-toolchain=$(GCC_TOOLCHAIN)" -DKokkos_ENABLE_HIP=On $(KOKKOS_CMAKE_HIP_ARCH) -DBUILD_SHARED_LIBS=On
+    KOKKOS_CMAKEFLAGS += -DCMAKE_CXX_COMPILER=$(ROCM_HIPCC) -DCMAKE_CXX_FLAGS="--target=$(GCC_TARGET) --gcc-toolchain=$(GCC_TOOLCHAIN)" -DKokkos_ENABLE_HIP=On $(KOKKOS_CMAKE_HIP_ARCH) -DBUILD_SHARED_LIBS=On
     KOKKOS_IS_SHARED := 1
     export KOKKOS_LIB := $(KOKKOS_LIBDIR)/libkokkoscore.so
     export KOKKOS_DEVICE_CXX := $(ROCM_HIPCC)
@@ -603,7 +604,7 @@ external_alpaka: $(ALPAKA_BASE)
 
 $(ALPAKA_BASE):
 	git clone git@github.com:alpaka-group/alpaka.git -b develop $@
-	cd $@ && git checkout 540397c4297719fcd76a704ee49b2318174782a4
+	cd $@ && git checkout b518e8c943a816eba06c3e12c0a7e1b58c8faedc
 
 # Kokkos
 external_kokkos: $(KOKKOS_LIB)

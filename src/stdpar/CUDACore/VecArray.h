@@ -5,6 +5,8 @@
 // Author: Felice Pantaleo, CERN
 //
 
+#include <atomic>
+
 namespace cms {
   namespace cuda {
 
@@ -27,7 +29,7 @@ namespace cms {
       }
 
       template <class... Ts>
-      constexpr int emplace_back_unsafe(Ts &&... args) {
+      constexpr int emplace_back_unsafe(Ts &&...args) {
         auto previousSize = m_size;
         m_size++;
         if (previousSize < maxSize) {
@@ -47,25 +49,27 @@ namespace cms {
       }
 
       // thread-safe version of the vector, when used in a CUDA kernel
-      __device__ int push_back(const T &element) {
-        auto previousSize = atomicAdd(&m_size, 1);
+      int push_back(const T &element) {
+        std::atomic_ref<int> s(m_size);
+        auto previousSize = s++;
         if (previousSize < maxSize) {
           m_data[previousSize] = element;
           return previousSize;
         } else {
-          atomicSub(&m_size, 1);
+          --s;
           return -1;
         }
       }
 
       template <class... Ts>
-      __device__ int emplace_back(Ts &&... args) {
-        auto previousSize = atomicAdd(&m_size, 1);
+      int emplace_back(Ts &&...args) {
+        std::atomic_ref<int> s(m_size);
+        auto previousSize = s++;
         if (previousSize < maxSize) {
           (new (&m_data[previousSize]) T(std::forward<Ts>(args)...));
           return previousSize;
         } else {
-          atomicSub(&m_size, 1);
+          --s;
           return -1;
         }
       }
