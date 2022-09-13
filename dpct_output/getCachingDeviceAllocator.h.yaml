@@ -1,0 +1,392 @@
+---
+MainSourceFile:  '/eos/home-l/lacappel/my-pixeltrack-standalone/sycl_test/getCachingDeviceAllocator.h'
+Replacements:
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          131
+    Length:          0
+    ReplacementText: "#include <CL/sycl.hpp>\n#include <dpct/dpct.hpp>\nusing namespace dpct;\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          171
+    Length:          26
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          389
+    Length:          0
+    ReplacementText: "\n#include <chrono>\nusing namespace dpct;\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          1766
+    Length:          29
+    ReplacementText: 'currentDevice = dev_mgr::instance().current_device_id()'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          1931
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1003:0: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          1947
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          1963
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          1966
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1003:1: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n      */\n      /*\n      DPCT1072:2: DPC++ currently does not support getting the available memory on the current device. You may need to adjust the code.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          1982
+    Length:          41
+    ReplacementText: '(totalMemory = get_current_device().get_device_info().get_global_mem_size(), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          2112
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1003:3: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          2126
+    Length:          13
+    ReplacementText: '(dev_mgr::instance().select_device'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          2154
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          2331
+    Length:          12
+    ReplacementText: 'sycl::queue *'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          2367
+    Length:          11
+    ReplacementText: 'sycl::event'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          3267
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1027:4: The call to cudaEventCreateWithFlags was replaced with 0 because this call is redundant in DPC++.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          3283
+    Length:          52
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          3361
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1027:5: The call to cudaEventDestroy was replaced with 0 because this call is redundant in DPC++.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          3415
+    Length:          19
+    ReplacementText: '0'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          3623
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1012:6: Detected kernel execution time measurement pattern and generated an initial code for time measurements in SYCL. You can change the way time is measured depending on your goals.\n    */\n    /*\n    DPCT1024:7: The original code returned the error code that was further consumed by the program logic. This original code was replaced with 0. You may need to rewrite the program logic consuming the error code.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          3683
+    Length:          0
+    ReplacementText: "e_ct1 = std::chrono::steady_clock::now(); \n    "
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          3693
+    Length:          25
+    ReplacementText: '(e = queue->submit_barrier(), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          3720
+    Length:          0
+    ReplacementText: "\n    std::chrono::time_point<std::chrono::steady_clock> e_ct1;"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4068
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1003:8: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4084
+    Length:          23
+    ReplacementText: '(ptr = (void *)sycl::malloc_device(bytes, get_default_queue()), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4178
+    Length:          0
+    ReplacementText: ' try '
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4197
+    Length:          0
+    ReplacementText: "      /*\n      DPCT1003:9: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n      */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4216
+    Length:          23
+    ReplacementText: '(ptr = (void *)sycl::malloc_device(bytes, get_default_queue()), 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4247
+    Length:          73
+    ReplacementText: ''
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4368
+    Length:          0
+    ReplacementText: "\n    catch (sycl::exception const &exc) {\n      std::cerr << exc.what() << \"Exception caught at file:\" << __FILE__ << \", line:\" << __LINE__ << std::endl;\n      std::exit(1);\n    }"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4370
+    Length:          0
+    ReplacementText: "    /*\n    DPCT1003:10: Migrated API does not return error code. (*, 0) is inserted. You may need to rewrite this code.\n    */\n"
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4414
+    Length:          13
+    ReplacementText: '(sycl::free(ptr, get_default_queue())'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+  - FilePath:        '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+    Offset:          4427
+    Length:          0
+    ReplacementText: ', 0)'
+    ConstantFlag:    ''
+    ConstantOffset:  0
+    InitStr:         ''
+    NewHostVarName:  ''
+    BlockLevelFormatFlag: false
+DpctVersion:     2022.0.0
+MainHelperFileName: dpct
+USMLevel:        ''
+FeatureMap:
+  device.hpp:
+    dev_mgr:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        dev_mgr_current_device_id:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'dev_mgr::current_device_id'
+          SubFeatureMap:   {}
+        dev_mgr_select_device:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'dev_mgr::select_device'
+          SubFeatureMap:   {}
+    device_ext:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        device_ext_get_device_info_return_info:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'device_ext::get_device_info'
+          SubFeatureMap:   {}
+    device_info:
+      IsCalled:        false
+      FeatureName:     ''
+      SubFeatureMap:
+        device_info_get_global_mem_size:
+          IsCalled:        true
+          CallerSrcFiles:
+            - '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+          FeatureName:     'device_info::get_global_mem_size'
+          SubFeatureMap:   {}
+    get_current_device:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+      FeatureName:     get_current_device
+      SubFeatureMap:   {}
+    get_default_queue:
+      IsCalled:        true
+      CallerSrcFiles:
+        - '/eos/home-l/lacappel/my-pixeltrack-standalone/src/cudadev/CUDACore/getCachingDeviceAllocator.h'
+      FeatureName:     get_default_queue
+      SubFeatureMap:   {}
+CompileTargets:  {}
+OptionMap:
+  AsyncHandler:
+    Value:           'false'
+    Specified:       false
+  CommentsEnabled:
+    Value:           'true'
+    Specified:       true
+  CompilationsDir:
+    Value:           ''
+    Specified:       false
+  CtadEnabled:
+    Value:           'false'
+    Specified:       false
+  CustomHelperFileName:
+    Value:           dpct
+    Specified:       false
+  ExperimentalFlag:
+    Value:           '0'
+    Specified:       false
+  ExplicitClNamespace:
+    Value:           'false'
+    Specified:       false
+  ExplicitNamespace:
+    Value:           '4'
+    Specified:       true
+  ExtensionFlag:
+    Value:           '4294967295'
+    Specified:       false
+  NDRangeDim:
+    Value:           '3'
+    Specified:       false
+  NoDRYPattern:
+    Value:           'false'
+    Specified:       false
+  OptimizeMigration:
+    Value:           'false'
+    Specified:       false
+  ProcessAll:
+    Value:           'false'
+    Specified:       false
+  SyclNamedLambda:
+    Value:           'false'
+    Specified:       false
+  UsmLevel:
+    Value:           '1'
+    Specified:       false
+...
