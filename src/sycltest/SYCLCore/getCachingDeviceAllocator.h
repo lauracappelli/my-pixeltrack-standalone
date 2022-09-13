@@ -12,7 +12,6 @@
 namespace cms::sycl::allocator {
   // Use caching or not
   enum class Policy { Synchronous = 0, Asynchronous = 1, Caching = 2 };
-// ??
 #ifndef CUDADEV_DISABLE_CACHING_ALLOCATOR
   constexpr Policy policy = Policy::Caching;
 #elif CUDA_VERSION >= 11020 && !defined CUDADEV_DISABLE_ASYNC_ALLOCATOR
@@ -53,7 +52,9 @@ namespace cms::sycl::allocator {
 
     static constexpr DeviceType kInvalidDevice = -1;
 
-    static DeviceType currentDevice() { return cms::cuda::currentDevice(); }
+    static DeviceType currentDevice(QueueType q) { 
+      return q.get_device();
+    }
 
     static DeviceType memoryDevice(DeviceType deviceEvent) {
       // For device allocator the device where the memory is allocated
@@ -77,20 +78,10 @@ namespace cms::sycl::allocator {
 
     static EventType createEvent() {
       EventType e;
-      // ??
       cudaEventCreateWithFlags(&e, cudaEventDisableTiming);
       return e;
     }
-
-    // ??
-    static void destroyEvent(EventType e) { cudaEventDestroy(e); }
-
-    // ??
-    static EventType recreateEvent(EventType e, DeviceType prev, DeviceType next) {
-      throw std::runtime_error("CUDADeviceTraits::recreateEvent() should never be called");
-    }
     
-    // ??
     static void recordEvent(EventType e, QueueType queue) { cudaEventRecord(e, queue); }
 
     struct DevicePrinter {
