@@ -45,6 +45,7 @@ int main() {
   
   // create "empty" event
   sycl::event empty_event;
+  sycl::device d = sycl::device();
 
   constexpr int N = 16392 * 16392;
   constexpr int size = N * sizeof(int);
