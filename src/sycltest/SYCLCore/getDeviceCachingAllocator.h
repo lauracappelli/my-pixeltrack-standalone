@@ -7,7 +7,7 @@
 
 #include "SYCLCore/AllocatorConfig.h"
 #include "SYCLCore/CachingAllocator.h"
-#include "SYCLCore/getDeviceIndex.h"
+#include "SYCLCore/chooseDevice.h"
 
 namespace cms::sycltools {
 
@@ -16,7 +16,7 @@ namespace cms::sycltools {
     template <typename TDevice, typename TQueue>
     auto allocate_device_allocators() {
       using Allocator = CachingAllocator<TDevice, TQueue>;
-      auto const& devices = cms::alpakatools::devices<alpaka::Pltf<TDevice>>;
+      auto const& devices = enumerateDevices(false);
       auto const size = devices.size();
 
       // allocate the storage for the objects
@@ -24,14 +24,16 @@ namespace cms::sycltools {
 
       // construct the objects in the storage
       for (size_t index = 0; index < size; ++index) {
-        new (ptr + index) Allocator(devices[index],
-                                    config::binGrowth,
-                                    config::minBin,
-                                    config::maxBin,
-                                    config::maxCachedBytes,
-                                    config::maxCachedFraction,
-                                    true,    // reuseSameQueueAllocations
-                                    false);  // debug
+        if(!devices[index].is_host()) {
+          new (ptr + index) Allocator(devices[index],
+                                      config::binGrowth,
+                                      config::minBin,
+                                      config::maxBin,
+                                      config::maxCachedBytes,
+                                      config::maxCachedFraction,
+                                      true,    // reuseSameQueueAllocations
+                                      false);  // debug
+        }
       }
 
       // use a custom deleter to destroy all objects and deallocate the memory
@@ -53,7 +55,7 @@ namespace cms::sycltools {
     static auto allocators = detail::allocate_device_allocators<TDevice, TQueue>();
 
     size_t const index = getDeviceIndex(device);
-    assert(index < cms::alpakatools::devices<alpaka::Pltf<TDevice>>.size());
+    assert(index < enumerateDevices(false).size());
 
     // the public interface is thread safe
     return allocators[index];
