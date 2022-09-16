@@ -212,7 +212,6 @@ namespace cms::sycltools {
 
     using CachedBlocks = std::multimap<unsigned int, BlockDescriptor>;  // ordered by the allocation bin
     using BusyBlocks = std::map<void*, BlockDescriptor>;  // ordered by the address of the allocated memory
-    using EventCompleted = sycl::info::event_command_status::complete;
 
     inline static const std::string deviceType_ = boost::core::demangle(typeid(Device).name());
 
@@ -236,7 +235,7 @@ namespace cms::sycltools {
 
     // return the maximum amount of memory that should be cached on this device
     size_t cacheSize(size_t maxCachedBytes, double maxCachedFraction) const {
-      size_t totalMemory = dev.get_info<info::device::global_mem_cache_size>();
+      size_t totalMemory = dev.get_info<sycl::info::device::global_mem_cache_size>();
       size_t memoryFraction = static_cast<size_t>(maxCachedFraction * totalMemory);
       size_t size = std::numeric_limits<size_t>::max();
       if (maxCachedBytes > 0 and maxCachedBytes < size) {
@@ -275,7 +274,7 @@ namespace cms::sycltools {
       const auto [begin, end] = cachedBlocks_.equal_range(block.bin);
       for (auto iBlock = begin; iBlock != end; ++iBlock) {
         if ((reuseSameQueueAllocations_ and (block.queue == (iBlock->second.queue))) or
-           (iBlock->second.event).get_info<sycl::info::event::command_execution_status>() == EventCompleted) {
+           (iBlock->second.event).get_info<sycl::info::event::command_execution_status>() == sycl::info::event_command_status::complete) {
           block = iBlock->second;
 
           // SYCL:: here we may create a new event if the new block is on a different queue respect the previous one
@@ -311,7 +310,7 @@ namespace cms::sycltools {
     }
 
     void* allocateBuffer(size_t bytes, Queue const& queue) {
-      if (q.get_device().is_host()) {
+      if (queue.get_device().is_host()) {
         // allocate pinned host memory
         return sycl::malloc_host(bytes, queue);
       } else {
