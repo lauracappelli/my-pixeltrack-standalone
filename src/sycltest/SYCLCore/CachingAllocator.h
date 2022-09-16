@@ -173,7 +173,7 @@ namespace cms::sycltools {
 
         if (debug_) {
           std::ostringstream out;
-          out << "\t" << deviceType_ << " " << device_.get_info<info::device::name>()
+          out << "\t" << deviceType_ << " " << device_.get_info<sycl::info::device::name>()
               << " returned " << block.bytes << " bytes at " << ptr  << " from associated queue " 
               << block.queue.get_info<sycl::info::queue::reference_count>() 
               << " .\n\t\t " << cachedBlocks_.size() << " available blocks cached ("
@@ -185,7 +185,7 @@ namespace cms::sycltools {
         // if the buffer is not recached, it is automatically freed when block goes out of scope
         if (debug_) {
           std::ostringstream out;
-          out << "\t" << deviceType_ << " " << device_.get_info<info::device::name>()
+          out << "\t" << deviceType_ << " " << device_.get_info<sycl::info::device::name>()
               << " freed " << block.bytes << " bytes at " << ptr << " from associated queue " 
               << block.queue.get_info<sycl::info::queue::reference_count>()
               << " .\n\t\t " << cachedBlocks_.size() << " available blocks cached ("
@@ -291,7 +291,7 @@ namespace cms::sycltools {
 
           if (debug_) {
             std::ostringstream out;
-            out << "\t" << deviceType_ << " " << device_.get_info<info::device::name>() 
+            out << "\t" << deviceType_ << " " << device_.get_info<sycl::info::device::name>() 
                 << " reused cached block at " << block.d_ptr 
                 << " (" << block.bytes << " bytes) for queue "
                 << block.queue.get_info<sycl::info::queue::reference_count>() 
@@ -327,7 +327,7 @@ namespace cms::sycltools {
         // the allocation attempt failed: free all cached blocks on the device and retry
         if (debug_) {
           std::ostringstream out;
-          out << "\t" << deviceType_ << " " << device_.get_info<info::device::name>()
+          out << "\t" << deviceType_ << " " << device_.get_info<sycl::info::device::name>()
               << " failed to allocate " << block.bytes << " bytes for queue " 
               << block.queue.get_info<sycl::info::queue::reference_count>()
               << ", retrying after freeing cached allocations" << std::endl;
@@ -349,7 +349,7 @@ namespace cms::sycltools {
 
       if (debug_) {
         std::ostringstream out;
-        out << "\t" << deviceType_ << " " << device_.get_info<info::device::name>() 
+        out << "\t" << deviceType_ << " " << device_.get_info<sycl::info::device::name>() 
             << " allocated new block at " << block.d_ptr << " (" << block.bytes 
             << " bytes associated with queue "
             << block.queue.get_info<sycl::info::queue::reference_count>() << "." 
@@ -367,7 +367,7 @@ namespace cms::sycltools {
 
         if (debug_) {
           std::ostringstream out;
-          out << "\t" << deviceType_ << " " << device_.get_info<info::device::name>()
+          out << "\t" << deviceType_ << " " << device_.get_info<sycl::info::device::name>()
               << " freed " << iBlock->second.bytes << " bytes.\n\t\t  " 
               << (cachedBlocks_.size() - 1) << " available blocks cached (" 
               << cachedBytes_.free << " bytes), " << liveBlocks_.size() 
