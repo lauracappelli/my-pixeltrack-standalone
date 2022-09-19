@@ -26,3 +26,5 @@
 /kokkostest
 /serial
 /sycltest
+
+.vscode/
