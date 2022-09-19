@@ -1,5 +1,5 @@
 #ifndef SYCLCore_AllocatorPolicy_h
-#defineSYCLCore_AllocatorPolicy_h
+#define SYCLCore_AllocatorPolicy_h
 
 namespace cms::sycltools {
 
