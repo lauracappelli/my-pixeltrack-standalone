@@ -121,7 +121,50 @@ namespace cms::sycltools {
       }
 
       void free(void* ptr) {
+        std::scoped_lock lock(mutex_);
 
+        auto blockIterator = liveBlocks_.find(ptr);
+        if (blockIterator == liveBlocks_.end()) {
+          std::stringstream ss;
+          ss << "Trying to free a non-live block at " << ptr;
+          throw std::runtime_error(ss.str());
+        }
+
+        // remove the block from the list of live blocks
+        BlockDescriptor block = std::move(blockIterator->second);
+        liveBlocks_.erase(blockIterator);
+        cachedBytes_.live -= block.bytes;
+        cachedBytes_.requested -= block.requested;
+
+        bool recache = (cachedBytes_.free + block.bytes <= maxCachedBytes_);
+        if (recache) {
+          // alpaka::enqueue(*(block.queue), *(block.event));
+          cachedBytes_.free += block.bytes;
+          cachedBlocks_.insert(std::make_pair(block.bin, block));
+
+          if (debug_) {
+            std::ostringstream out;
+            out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
+                << " returned " << block.bytes << " bytes at " << ptr << " .\n\t\t " 
+                << cachedBlocks_.size() << " available blocks cached ("
+                << cachedBytes_.free << " bytes), " << liveBlocks_.size()
+                << " live blocks (" << cachedBytes_.live << " bytes) outstanding."
+                << std::endl;
+            std::cout << out.str() << std::endl;
+          }
+        } else {
+          // the block it is automatically freed because it goes out of scope
+          if (debug_) {
+            std::ostringstream out;
+            out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
+                << " freed " << block.bytes << " bytes at " << ptr << " .\n\t\t "
+                << cachedBlocks_.size() << " available blocks cached ("
+                << cachedBytes_.free << " bytes), " << liveBlocks_.size()
+                << " live blocks (" << cachedBytes_.live << " bytes) outstanding." 
+                << std::endl;
+            std::cout << out.str() << std::endl;
+          }
+        }
       }
 
     private:
@@ -290,6 +333,7 @@ namespace cms::sycltools {
           freeAllCached();
 
           // throw an exception if it fails again
+          // NOTE: this must be checked
           block.d_ptr = allocateBuffer(block.bytes, block.queue);
         }
 
