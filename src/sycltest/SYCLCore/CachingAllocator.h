@@ -143,7 +143,7 @@ namespace cms::sycltools {
         cachedBytes_.live -= block.bytes;
         cachedBytes_.requested -= block.bytes_requested;
 
-        bool recache = (cachedBytes_.free + block.bytes <= maxCachedBytes_);
+        bool recache = (cachedBytes_.free + block.bytes <= maxCachedBytes_) and reuseSameQueueAllocations_;
         if (recache) {
           block.event = block.queue.ext_oneapi_submit_barrier();
           cachedBytes_.free += block.bytes;
