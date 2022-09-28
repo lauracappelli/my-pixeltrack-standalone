@@ -138,7 +138,7 @@ namespace cms::sycltools {
 
         bool recache = (cachedBytes_.free + block.bytes <= maxCachedBytes_);
         if (recache) {
-          // alpaka::enqueue(*(block.queue), *(block.event));
+          block.event = block.queue.submit_barrier();
           cachedBytes_.free += block.bytes;
           cachedBlocks_.insert(std::make_pair(block.bin, block));
 
@@ -153,7 +153,8 @@ namespace cms::sycltools {
             std::cout << out.str() << std::endl;
           }
         } else {
-          // the block it is automatically freed because it goes out of scope
+          sycl::free(block.d_ptr, block.queue);
+
           if (debug_) {
             std::ostringstream out;
             out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
@@ -268,18 +269,13 @@ namespace cms::sycltools {
         // iterate through the range of cached blocks in the same bin
         const auto [begin, end] = cachedBlocks_.equal_range(block.bin);
         for (auto blockIterator = begin; blockIterator != end; ++blockIterator) {
-          // NOTA: in this if condition have to be inserted a check on a completed event:
-          // if ((reuseSameQueueAllocations_ and (block.queue == (blockIterator->second.queue))) or event_completed) {
-          if (reuseSameQueueAllocations_ and (block.queue == (blockIterator->second.queue))) {
+          if ((reuseSameQueueAllocations_ and (block.queue == (blockIterator->second.queue))) or 
+              block.event.get_info<sycl::info::event::command_execution_status>() == sycl::info::event_command_status::complete) {
             auto queue = block.queue;
             block = blockIterator->second;
             block.queue = queue;
 
-            // NOTA: event part to be reviewed
-            // if the new queue is on different device than the old event, create a new event
-            // if (block.device() != alpaka::getDev(*(block.event))) {
-            //   block.event = Event{block.device()};
-            // }
+            block.event = block.queue.submit_barrier();
 
             // insert the cached block into the live blocks
             liveBlocks_[block.d_ptr] = block;
@@ -309,12 +305,12 @@ namespace cms::sycltools {
         return false;
       }
 
-      void* allocateBuffer(size_t bytes, sycl::queue const& queue) {
-          if(queue.get_device().is_host()){
-            return sycl::malloc_host(bytes, queue);
-          } else {
-            return sycl::malloc_device(bytes, queue);
-          }
+      void* allocateBuffer(size_t bytes, sycl::queue queue) {
+        if(queue.get_device().is_host()){
+          return sycl::malloc_host(bytes, queue);
+        } else {
+          return sycl::malloc_device(bytes, queue);
+        }
       }
 
       void allocateNewBlock(BlockDescriptor& block) {
@@ -339,7 +335,7 @@ namespace cms::sycltools {
         }
 
         // create a new event associated to the "synchronisation device"
-        block.event = Event{block.device()};
+        block.event = block.queue.submit_barrier();
 
         {
           std::scoped_lock lock(mutex_);
@@ -352,7 +348,7 @@ namespace cms::sycltools {
           std::ostringstream out;
           out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
               << " allocated new block at " << block.d_ptr 
-              << " (" << block.bytes << " bytes." << std::endl;
+              << " of " << block.bytes << " bytes" << std::endl;
           std::cout << out.str() << std::endl;
         }
       }
