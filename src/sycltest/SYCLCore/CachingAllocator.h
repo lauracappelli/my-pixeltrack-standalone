@@ -212,7 +212,7 @@ namespace cms::sycltools {
 
       // return the maximum amount of memory that should be cached on this device
       size_t cacheSize(size_t maxCachedBytes, double maxCachedFraction) const {
-        size_t totalMemory = device_.get_info<sycl::info::device::global_mem_cache_size>();
+        size_t totalMemory = device_.get_info<sycl::info::device::global_mem_size>();
         size_t memoryFraction = static_cast<size_t>(maxCachedFraction * totalMemory);
         size_t size = std::numeric_limits<size_t>::max();
         if (maxCachedBytes > 0 and maxCachedBytes < size) {
