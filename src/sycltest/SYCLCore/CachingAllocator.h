@@ -84,6 +84,7 @@ namespace cms::sycltools {
         if (debug_) {
           std::ostringstream out;
           out << "SYCL CachingAllocator settings\n"
+              << "  Device " << device_.get_info<sycl::info::device::name>() << "\n"
               << "  bin growth " << binGrowth_ << "\n"
               << "  min bin    " << minBin_ << "\n"
               << "  max bin    " << maxBin_ << "\n"
