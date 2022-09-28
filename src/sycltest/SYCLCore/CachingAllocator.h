@@ -1,9 +1,14 @@
 #ifndef SYCLCore_CachingAllocator_h
 #define SYCLCore_CachingAllocator_h
 
-#include <mutex>
+#include <cassert>
+#include <exception>
 #include <iomanip>
+#include <iostream>
 #include <map>
+#include <mutex>
+#include <sstream>
+#include <string>
 #include <tuple>
 
 #include <CL/sycl.hpp>
