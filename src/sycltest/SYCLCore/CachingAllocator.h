@@ -109,7 +109,7 @@ namespace cms::sycltools {
         // create a block descriptor for the requested allocation
         BlockDescriptor block;
         block.queue = queue;
-        block.requested = bytes;
+        block.bytes_requested = bytes;
         std::tie(block.bin, block.bytes) = findBin(bytes);
 
         // try to re-use a cached block, or allocate a new buffer
@@ -134,7 +134,7 @@ namespace cms::sycltools {
         BlockDescriptor block = std::move(blockIterator->second);
         liveBlocks_.erase(blockIterator);
         cachedBytes_.live -= block.bytes;
-        cachedBytes_.requested -= block.requested;
+        cachedBytes_.requested -= block.bytes_requested;
 
         bool recache = (cachedBytes_.free + block.bytes <= maxCachedBytes_);
         if (recache) {
@@ -170,6 +170,7 @@ namespace cms::sycltools {
     private:
       struct BlockDescriptor {
         sycl::queue queue;            // associated queue
+        sycl::event event;            // event to check the status of the allocated data
         void *d_ptr;                  // poiter to data
         size_t bytes = 0;             // bytes allocated
         size_t bytes_requested = 0;   // bytes requested
@@ -286,7 +287,7 @@ namespace cms::sycltools {
             // update the accounting information
             cachedBytes_.free -= block.bytes;
             cachedBytes_.live += block.bytes;
-            cachedBytes_.requested += block.requested;
+            cachedBytes_.requested += block.bytes_requested;
 
             if (debug_) {
               std::ostringstream out;
@@ -310,9 +311,9 @@ namespace cms::sycltools {
 
       void* allocateBuffer(size_t bytes, sycl::queue const& queue) {
           if(queue.get_device().is_host()){
-            return block.d_ptr = malloc_host(block.bytes, block.queue);
+            return sycl::malloc_host(bytes, queue);
           } else {
-            return block.d_ptr = malloc_device(block.bytes, block.queue);
+            return sycl::malloc_device(bytes, queue);
           }
       }
 
@@ -343,7 +344,7 @@ namespace cms::sycltools {
         {
           std::scoped_lock lock(mutex_);
           cachedBytes_.live += block.bytes;
-          cachedBytes_.requested += block.requested;
+          cachedBytes_.requested += block.bytes_requested;
           liveBlocks_[block.d_ptr] = block;
         }
 
