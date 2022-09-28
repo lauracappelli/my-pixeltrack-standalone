@@ -237,7 +237,7 @@ namespace cms::sycltools {
             std::ostringstream out;
             out << "\tDevice " << device_.get_info<sycl::info::device::name>()
                 << " freed " << block.bytes << " bytes.\n\t\t  " 
-                << (cachedBlocks_.size() - 1) << " available blocks cached (" 
+                << cachedBlocks_.size() << " available blocks cached (" 
                 << cachedBytes_.free << " bytes), " << liveBlocks_.size() 
                 << " live blocks (" << cachedBytes_.live << " bytes) outstanding."
                 << std::endl;
