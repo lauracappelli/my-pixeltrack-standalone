@@ -63,7 +63,7 @@ namespace cms::sycltools {
       
       // constructor
       CachingAllocator(
-          sycl::queue queue,
+          sycl::device device,
           unsigned int binGrowth,
           unsigned int minBin,
           unsigned int maxBin,
@@ -71,7 +71,7 @@ namespace cms::sycltools {
           double maxCachedFraction,
           const bool debug,
           const bool reuseSameQueueAllocations)
-          : queue_(queue),
+          : device_(device),
             binGrowth_(binGrowth),
             minBin_(minBin),
             maxBin_(maxBin),
@@ -111,6 +111,7 @@ namespace cms::sycltools {
       // Allocate given number of bytes on the current device associated to given queue
       // NOTE: probably this function could use template: instead void*, we will use T*
       void* allocate(size_t bytes, sycl::queue queue) {
+        assert(queue.get_device() == device_);
         // create a block descriptor for the requested allocation
         BlockDescriptor block;
         block.queue = queue;
@@ -149,7 +150,7 @@ namespace cms::sycltools {
 
           if (debug_) {
             std::ostringstream out;
-            out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
+            out << "\tDevice " << device_.get_info<sycl::info::device::name>()
                 << " returned " << block.bytes << " bytes at " << ptr << " .\n\t\t " 
                 << cachedBlocks_.size() << " available blocks cached ("
                 << cachedBytes_.free << " bytes), " << liveBlocks_.size()
@@ -162,7 +163,7 @@ namespace cms::sycltools {
 
           if (debug_) {
             std::ostringstream out;
-            out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
+            out << "\tDevice " << device_.get_info<sycl::info::device::name>()
                 << " freed " << block.bytes << " bytes at " << ptr << " .\n\t\t "
                 << cachedBlocks_.size() << " available blocks cached ("
                 << cachedBytes_.free << " bytes), " << liveBlocks_.size()
@@ -183,7 +184,7 @@ namespace cms::sycltools {
         unsigned int bin = 0;         // bin class id, binGrowth^bin is the block size  
       };
 
-      sycl::queue queue_;
+      sycl::device device_;
       std::mutex mutex_;
 
       const bool debug_;
@@ -210,7 +211,7 @@ namespace cms::sycltools {
 
       // return the maximum amount of memory that should be cached on this device
       size_t cacheSize(size_t maxCachedBytes, double maxCachedFraction) const {
-        size_t totalMemory = queue_.get_device().get_info<sycl::info::device::global_mem_cache_size>();
+        size_t totalMemory = device_.get_info<sycl::info::device::global_mem_cache_size>();
         size_t memoryFraction = static_cast<size_t>(maxCachedFraction * totalMemory);
         size_t size = std::numeric_limits<size_t>::max();
         if (maxCachedBytes > 0 and maxCachedBytes < size) {
@@ -234,7 +235,7 @@ namespace cms::sycltools {
 
           if (debug_) {
             std::ostringstream out;
-            out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
+            out << "\tDevice " << device_.get_info<sycl::info::device::name>()
                 << " freed " << block.bytes << " bytes.\n\t\t  " 
                 << (cachedBlocks_.size() - 1) << " available blocks cached (" 
                 << cachedBytes_.free << " bytes), " << liveBlocks_.size() 
@@ -292,7 +293,7 @@ namespace cms::sycltools {
 
             if (debug_) {
               std::ostringstream out;
-              out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
+              out << "\tDevice " << device_.get_info<sycl::info::device::name>()
                   << " reused cached block at " << block.d_ptr 
                   << " (" << block.bytes << " bytes)" 
                   << " previously associated with device " 
@@ -327,7 +328,7 @@ namespace cms::sycltools {
           if (debug_) {
             std::ostringstream out;
             out << "\tCaught synchronous SYCL exception:\n" << e.what() << "\n"
-                << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
+                << "\tDevice " << device_.get_info<sycl::info::device::name>()
                 << " failed to allocate " << block.bytes << " bytes,"
                 << " retrying after freeing cached allocations" << std::endl;
             std::cout << out.str() << std::endl;
@@ -351,7 +352,7 @@ namespace cms::sycltools {
 
         if (debug_) {
           std::ostringstream out;
-          out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
+          out << "\tDevice " << device_.get_info<sycl::info::device::name>()
               << " allocated new block at " << block.d_ptr 
               << " of " << block.bytes << " bytes" << std::endl;
           std::cout << out.str() << std::endl;
