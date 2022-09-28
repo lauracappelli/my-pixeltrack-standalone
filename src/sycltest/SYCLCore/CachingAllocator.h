@@ -222,26 +222,26 @@ namespace cms::sycltools {
         return size;
       }
 
-      // NOTE: check the update of cachedBytes_, probably other field must be update
       void freeAllCached() {
         std::scoped_lock lock(mutex_);
 
         while (not cachedBlocks_.empty()) {
           auto blockIterator = cachedBlocks_.begin();
-          cachedBytes_.free -= blockIterator->second.bytes;
+          BlockDescriptor block = std::move(blockIterator->second);
+          cachedBlocks_.erase(blockIterator);
+          cachedBytes_.free -= block.bytes;
+          sycl::free(block.d_ptr, block.queue);
 
           if (debug_) {
             std::ostringstream out;
             out << "\tDevice " << queue_.get_device().get_info<sycl::info::device::name>()
-                << " freed " << blockIterator->second.bytes << " bytes.\n\t\t  " 
+                << " freed " << block.bytes << " bytes.\n\t\t  " 
                 << (cachedBlocks_.size() - 1) << " available blocks cached (" 
                 << cachedBytes_.free << " bytes), " << liveBlocks_.size() 
                 << " live blocks (" << cachedBytes_.live << " bytes) outstanding."
                 << std::endl;
             std::cout << out.str() << std::endl;
           }
-
-          cachedBlocks_.erase(blockIterator);
         }
       }
 
