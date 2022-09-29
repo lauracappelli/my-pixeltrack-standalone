@@ -326,7 +326,7 @@ namespace cms::sycltools {
       return false;
     }
 
-    void* allocateBuffer(size_t bytes, sycl::queue queue) {
+    void* allocateBuffer(size_t bytes, sycl::queue& queue) {
       if (queue.get_device().is_host()) {
         return sycl::malloc_host(bytes, queue);
       } else {
