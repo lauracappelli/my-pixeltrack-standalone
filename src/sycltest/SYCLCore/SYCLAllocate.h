@@ -1,5 +1,5 @@
-#ifndef SYCLCore_AllocateDevice_h
-#define SYCLCore_AllocateDevice_h
+#ifndef SYCLCore_SYCLAllocate_h
+#define SYCLCore_SYCLAllocate_h
 
 #include <cassert>
 #include <limits>
