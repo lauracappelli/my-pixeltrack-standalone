@@ -19,7 +19,9 @@ namespace cms {
 
         void operator()(void* ptr) {
           if (stream_) {
-            sycl::free(ptr, *stream_);
+            auto dev = (*stream_).get_device();
+            CachingAllocator& allocator = getCachingAllocator(dev);
+            allocator.free(ptr);
           }
         }
 
