@@ -15,11 +15,6 @@
 
 // Inspired by cub::CachingDeviceAllocator
 
-// template <typename T>
-// T* sycl::malloc_device(size_t count,
-//                        const queue& syclQueue,
-//                        const property_list &propList = {})
-
 namespace cms::sycltools {
 
   namespace detail {
@@ -110,7 +105,6 @@ namespace cms::sycltools {
       }
 
       // Allocate given number of bytes on the current device associated to given queue
-      // NOTE: probably this function could use template: instead void*, we will use T*
       void* allocate(size_t bytes, sycl::queue queue) {
         assert(queue.get_device() == device_);
         // create a block descriptor for the requested allocation
