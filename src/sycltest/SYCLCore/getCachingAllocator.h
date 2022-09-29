@@ -14,7 +14,7 @@
 namespace cms::sycltools {
 
   namespace detail {
-    auto allocate_device_allocators() {
+    auto allocate_allocators() {
       using Allocator = cms::sycltools::CachingAllocator;
       auto const& devices = enumerateDevices();
       auto const size = devices.size();
@@ -47,9 +47,9 @@ namespace cms::sycltools {
 
   }  // namespace detail
 
-  inline CachingAllocator& getDeviceCachingAllocator(sycl::device const& device) {
+  inline CachingAllocator& getCachingAllocator(sycl::device const& device) {
     // initialise all allocators, one per device
-    static auto allocators = detail::allocate_device_allocators();
+    static auto allocators = detail::allocate_allocators();
 
     size_t const index = getDeviceIndex(device);
     assert(index < cms::sycltools::enumerateDevices().size());
