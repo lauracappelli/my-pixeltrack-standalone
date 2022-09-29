@@ -175,10 +175,10 @@ namespace cms::sycltools {
 
         if (debug_) {
           std::ostringstream out;
-          out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " returned " << block.bytes
-              << " bytes at " << ptr << " .\n\t\t " << cachedBlocks_.size() << " available blocks cached ("
-              << cachedBytes_.free << " bytes), " << liveBlocks_.size() << " live blocks (" << cachedBytes_.live
-              << " bytes) outstanding." << std::endl;
+          out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " on queue " << block.queue
+              << " returned " << block.bytes << " bytes at " << ptr << " .\n\t\t " << cachedBlocks_.size()
+              << " available blocks cached (" << cachedBytes_.free << " bytes), " << liveBlocks_.size()
+              << " live blocks (" << cachedBytes_.live << " bytes) outstanding." << std::endl;
           std::cout << out.str() << std::endl;
         }
       } else {
@@ -186,10 +186,10 @@ namespace cms::sycltools {
 
         if (debug_) {
           std::ostringstream out;
-          out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " freed " << block.bytes << " bytes at "
-              << ptr << " .\n\t\t " << cachedBlocks_.size() << " available blocks cached (" << cachedBytes_.free
-              << " bytes), " << liveBlocks_.size() << " live blocks (" << cachedBytes_.live << " bytes) outstanding."
-              << std::endl;
+          out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " on queue " << block.queue << " freed "
+              << block.bytes << " bytes at " << ptr << " .\n\t\t " << cachedBlocks_.size()
+              << " available blocks cached (" << cachedBytes_.free << " bytes), " << liveBlocks_.size()
+              << " live blocks (" << cachedBytes_.live << " bytes) outstanding." << std::endl;
           std::cout << out.str() << std::endl;
         }
       }
@@ -197,8 +197,7 @@ namespace cms::sycltools {
 
   private:
     struct BlockDescriptor {
-
-      sycl::queue* queue;           // associated queue
+      sycl::queue* queue;          // associated queue
       sycl::event event;           // event to check the status of the allocated data
       void* d_ptr;                 // poiter to data
       size_t bytes = 0;            // bytes allocated
@@ -254,10 +253,10 @@ namespace cms::sycltools {
 
         if (debug_) {
           std::ostringstream out;
-          out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " freed " << block.bytes
-              << " bytes.\n\t\t  " << cachedBlocks_.size() << " available blocks cached (" << cachedBytes_.free
-              << " bytes), " << liveBlocks_.size() << " live blocks (" << cachedBytes_.live << " bytes) outstanding."
-              << std::endl;
+          out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " on queue " << block.queue << " freed "
+              << block.bytes << " bytes.\n\t\t  " << cachedBlocks_.size() << " available blocks cached ("
+              << cachedBytes_.free << " bytes), " << liveBlocks_.size() << " live blocks (" << cachedBytes_.live
+              << " bytes) outstanding." << std::endl;
           std::cout << out.str() << std::endl;
         }
       }
@@ -294,7 +293,6 @@ namespace cms::sycltools {
         if ((block.queue == (blockIterator->second.queue)) or
             block.event.get_info<sycl::info::event::command_execution_status>() ==
                 sycl::info::event_command_status::complete) {
-
           auto oldqueue = block.queue;
           block = blockIterator->second;
           cachedBlocks_.erase(blockIterator);
@@ -310,11 +308,11 @@ namespace cms::sycltools {
 
           if (debug_) {
             std::ostringstream out;
-            out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " reused cached block at "
-                << block.d_ptr << " (" << block.bytes << " bytes)"
+            out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " on queue " << block.queue
+                << " reused cached block at " << block.d_ptr << " (" << block.bytes << " bytes)"
                 << " previously associated with device "
                 << (blockIterator->second.queue)->get_device().get_info<sycl::info::device::name>() << std::endl;
-            std::cout << out.str();
+            std::cout << out.str() << std::endl;
           }
 
           block.event = block.queue->ext_oneapi_submit_barrier();
@@ -344,8 +342,8 @@ namespace cms::sycltools {
           std::ostringstream out;
           out << "\tCaught synchronous SYCL exception:\n"
               << e.what() << "\n"
-              << "\tDevice " << device_.get_info<sycl::info::device::name>() << " failed to allocate " << block.bytes
-              << " bytes,"
+              << "\tDevice " << device_.get_info<sycl::info::device::name>() << " on queue " << block.queue
+              << " failed to allocate " << block.bytes << " bytes,"
               << " retrying after freeing cached allocations" << std::endl;
           std::cout << out.str() << std::endl;
         }
@@ -368,8 +366,8 @@ namespace cms::sycltools {
 
       if (debug_) {
         std::ostringstream out;
-        out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " allocated new block at " << block.d_ptr
-            << " of " << block.bytes << " bytes" << std::endl;
+        out << "\tDevice " << device_.get_info<sycl::info::device::name>() << " on queue " << block.queue
+            << " allocated new block at " << block.d_ptr << " of " << block.bytes << " bytes" << std::endl;
         std::cout << out.str() << std::endl;
       }
     }
