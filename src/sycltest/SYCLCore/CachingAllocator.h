@@ -64,8 +64,8 @@ namespace cms::sycltools {
           unsigned int maxBin,
           size_t maxCachedBytes,
           double maxCachedFraction,
-          const bool debug,
-          const bool reuseSameQueueAllocations)
+          const bool reuseSameQueueAllocations,
+          const bool debug)
           : device_(device),
             binGrowth_(binGrowth),
             minBin_(minBin),
@@ -74,8 +74,8 @@ namespace cms::sycltools {
             minBinBytes_(detail::power(binGrowth, minBin)),
             maxBinBytes_(detail::power(binGrowth, maxBin)),
             maxCachedBytes_(cacheSize(maxCachedBytes, maxCachedFraction)),
-            debug_(debug),
-            reuseSameQueueAllocations_(reuseSameQueueAllocations) {
+            reuseSameQueueAllocations_(reuseSameQueueAllocations),
+            debug_(debug) {
         if (debug_) {
           std::ostringstream out;
           out << "SYCL CachingAllocator settings\n"
