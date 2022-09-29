@@ -13,7 +13,38 @@
 
 #include <CL/sycl.hpp>
 
-// Inspired by cub::CachingDeviceAllocator
+/* 
+  * SYCL Caching Allocator
+  * Inspired by cub::CachingDeviceAllocator and Alpaka CachingAllocator
+  * Authors: Laura Cappelli (INFN), Luca Ferragina (UniBO)
+  * 
+  * The SYCL Caching Allocator rules are similar to the CUDA ones:
+  * - Allocations from the allocator are associated with a queue. Once freed, the 
+  *   allocation becomes available immediately for reuse within the queue with
+  *   which it was associated with during allocation, and it becomes available for
+  *   reuse within other streams when all prior work submitted to queue has 
+  *   completed.
+  * - Allocations are categorized and cached by bin size. A new allocation request
+  *   of a given size will only consider cached allocations within the 
+  *   corresponding bin.
+  * - Bin limits progress geometrically in accordance with the growth factor
+  *   binGrowth provided during construction.
+  * - Allocation requests below (binGrowth ^ minBin) are rounded up to
+  *   (binGrowth ^ minBin).
+  * - Allocations above (binGrowth ^ maxBin) are not accepted
+  * - If the total storage of cached allocations on a given device exceeds 
+  *   maxCachedBytes, allocations for that device are simply freed when they are 
+  *   deallocated instead of being returned to their bin-cache.
+  *
+  * For example, the default-constructed CachingAllocator is configured with:
+  * - binGrowth          = 2
+  * - minBin             = 8
+  * - maxBin             = 30
+  * - maxCachedBytes    = unlimited
+  * which delineates 23 bin-sizes: 256B, 512B, 1kB, 2kB, 4kB, 8kB, 16kB, 32kB, 
+  * 64kB, 128kB, 256kB, 512kB, 1MB, 2MB, 4MB, 8MB, 16MB, 32MB, 64MB, 128MB, 
+  * 256MB, 512MB, 1GB and sets a maximum of 105,258,400 cached kB
+*/
 
 namespace cms::sycltools {
 
@@ -113,7 +144,7 @@ namespace cms::sycltools {
       std::tie(block.bin, block.bytes) = findBin(bytes);
 
       // try to re-use a cached block, or allocate a new buffer
-      if (not tryReuseCachedBlock(block)) {
+      if (not reuseSameQueueAllocations_ or not tryReuseCachedBlock(block)) {
         allocateNewBlock(block);
       }
 
@@ -259,14 +290,14 @@ namespace cms::sycltools {
       // iterate through the range of cached blocks in the same bin
       const auto [begin, end] = cachedBlocks_.equal_range(block.bin);
       for (auto blockIterator = begin; blockIterator != end; ++blockIterator) {
-        if ((reuseSameQueueAllocations_ and (block.queue == (blockIterator->second.queue))) or
+        if ((block.queue == (blockIterator->second.queue)) or
             block.event.get_info<sycl::info::event::command_execution_status>() ==
                 sycl::info::event_command_status::complete) {
+
           auto queue = block.queue;
           block = blockIterator->second;
+          cachedBlocks_.erase(blockIterator);
           block.queue = queue;
-
-          block.event = block.queue.ext_oneapi_submit_barrier();
 
           // insert the cached block into the live blocks
           liveBlocks_[block.d_ptr] = block;
@@ -285,8 +316,8 @@ namespace cms::sycltools {
             std::cout << out.str();
           }
 
+          block.event = block.queue.ext_oneapi_submit_barrier();
           // remove the reused block from the list of cached blocks
-          cachedBlocks_.erase(blockIterator);
           return true;
         }
       }
