@@ -7,17 +7,16 @@
 
 #include <CL/sycl.hpp>
 
+#include "SYCLCore/getDeviceIndex.h"
 #include "SYCLCore/AllocatorConfig.h"
 #include "SYCLCore/CachingAllocator.h"
 
 namespace cms::sycltools {
 
   namespace detail {
-
-
     auto allocate_device_allocators() {
       using Allocator = cms::sycltools::CachingAllocator;
-      auto const& devices = cms::sycltools::enumerateDevices();
+      auto const& devices = enumerateDevices();
       auto const size = devices.size();
 
       // allocate the storage for the objects
@@ -48,13 +47,12 @@ namespace cms::sycltools {
 
   }  // namespace detail
 
-  template <typename TDevice, typename TQueue>
-  inline CachingAllocator<TDevice, TQueue>& getDeviceCachingAllocator(TDevice const& device) {
+  inline CachingAllocator& getDeviceCachingAllocator(sycl::device const& device) {
     // initialise all allocators, one per device
-    static auto allocators = detail::allocate_device_allocators<TDevice, TQueue>();
+    static auto allocators = detail::allocate_device_allocators();
 
     size_t const index = getDeviceIndex(device);
-    assert(index < cms::alpakatools::devices<alpaka::Pltf<TDevice>>.size());
+    assert(index < cms::sycltools::enumerateDevices().size());
 
     // the public interface is thread safe
     return allocators[index];
