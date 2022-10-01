@@ -24,6 +24,16 @@ namespace cms::sycltools {
 
     // if both maxCachedBytes and maxCachedFraction are non-zero, the smallest resulting value is used.
 
+    // allocator policy: caching or non caching.
+
+    constexpr bool allocator_policy =
+
+#if !defined SYCL_DISABLE_CACHING_ALLOCATOR
+        true;  // caching allocator
+#else
+        false;  // non caching allocator
+#endif
+
   }  // namespace config
 
 }  // namespace cms::sycltools

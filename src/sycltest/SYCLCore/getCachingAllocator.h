@@ -14,7 +14,7 @@
 namespace cms::sycltools {
 
   namespace detail {
-    auto allocate_allocators() {
+    inline auto allocate_allocators() {
       using Allocator = cms::sycltools::CachingAllocator;
       auto const& devices = enumerateDevices();
       auto const size = devices.size();
@@ -30,8 +30,8 @@ namespace cms::sycltools {
                                     config::maxBin,
                                     config::maxCachedBytes,
                                     config::maxCachedFraction,
-                                    true,    // reuseSameQueueAllocations
-                                    false);  // debug
+                                    config::allocator_policy,  // reuseSameQueueAllocations
+                                    false);                    // debug
       }
 
       // use a custom deleter to destroy all objects and deallocate the memory
@@ -60,4 +60,4 @@ namespace cms::sycltools {
 
 }  // namespace cms::sycltools
 
-#endif  // AlpakaCore_getDeviceCachingAllocator_h
+#endif  // SYCLCore_getDeviceCachingAllocator_h
