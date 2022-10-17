@@ -49,7 +49,7 @@ namespace cms {
     }  // namespace impl
 
     template <typename T>
-    typename impl::make_unique_selector<T>::non_array make_unique(sycl::queue stream) {
+    typename impl::make_unique_selector<T>::non_array make_unique(sycl::queue const& stream) {
       static_assert(std::is_trivially_constructible<T>::value,
                     "Allocating with non-trivial constructor on the device memory is not supported");
       CachingAllocator& allocator = getCachingAllocator(stream.get_device());
@@ -58,7 +58,7 @@ namespace cms {
     }
 
     template <typename T>
-    typename impl::make_unique_selector<T>::unbounded_array make_unique(size_t n, sycl::queue stream) {
+    typename impl::make_unique_selector<T>::unbounded_array make_unique(size_t n, sycl::queue const& stream) {
       using element_type = typename std::remove_extent<T>::type;
       static_assert(std::is_trivially_constructible<element_type>::value,
                     "Allocating with non-trivial constructor on the device memory is not supported");
@@ -73,14 +73,14 @@ namespace cms {
 
     // No check for the trivial constructor, make it clear in the interface
     template <typename T>
-    typename impl::make_unique_selector<T>::non_array make_unique_uninitialized(sycl::queue stream) {
+    typename impl::make_unique_selector<T>::non_array make_unique_uninitialized(sycl::queue const& stream) {
       CachingAllocator& allocator = getCachingAllocator(stream.get_device());
       void* mem = allocator.allocate(sizeof(T), stream);
       return typename impl::make_unique_selector<T>::non_array{reinterpret_cast<T*>(mem), impl::Deleter{stream}};
     }
 
     template <typename T>
-    typename impl::make_unique_selector<T>::unbounded_array make_unique_uninitialized(size_t n, sycl::queue stream) {
+    typename impl::make_unique_selector<T>::unbounded_array make_unique_uninitialized(size_t n, sycl::queue const& stream) {
       using element_type = typename std::remove_extent<T>::type;
       CachingAllocator& allocator = getCachingAllocator(stream.get_device());
       void* mem = allocator.allocate(n * sizeof(element_type), stream);
@@ -93,4 +93,4 @@ namespace cms {
   }  // namespace sycltools
 }  // namespace cms
 
-#endif
+#endif //HeterogeneousCore_SYCLUtilities_interface_unique_ptr_h
