@@ -53,11 +53,13 @@ namespace cms::sycltools {
     return devices;
   }
 
-  sycl::device chooseDevice(edm::StreamID id) {
+  sycl::device chooseDevice(edm::StreamID id, bool debug) {
     auto const& devices = enumerateDevices();
     auto const& device = devices[id % devices.size()];
-    std::cerr << "EDM stream " << id << " offload to " << device.get_info<cl::sycl::info::device::name>()
-              << " on backend " << device.get_backend() << std::endl;
+    if (debug) {
+      std::cerr << "EDM stream " << id << " offload to " << device.get_info<cl::sycl::info::device::name>()
+                << " on backend " << device.get_backend() << std::endl;
+    }
     return device;
   }
 }  // namespace cms::sycltools
