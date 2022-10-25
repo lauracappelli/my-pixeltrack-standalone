@@ -137,7 +137,6 @@ namespace cms::sycltools {
 
     // Allocate given number of bytes on the current device associated to given queue
     void* allocate(size_t bytes, sycl::queue const& queue) {
-      assert(queue.get_device() == device_);
       // create a block descriptor for the requested allocation
       BlockDescriptor block;
       block.queue = queue;
@@ -327,7 +326,7 @@ namespace cms::sycltools {
     }
 
     void* allocateBuffer(size_t bytes, sycl::queue const& queue) {
-      if (queue.get_device().is_host()) {  // TODO is_host -> data member
+      if (device_.is_host()) {  // TODO is_host -> data member
         return sycl::malloc_host(bytes, queue);
       } else {
         return sycl::malloc_device(bytes, queue);
