@@ -327,8 +327,18 @@ namespace cms::sycltools {
 
     void* allocateBuffer(size_t bytes, sycl::queue const& queue) {
       if (device_.is_host()) {  // TODO is_host -> data member
+        if(debug_){
+          std::ostringstream out;
+          out << "\tMalloc_host of " << bytes << " bytes." << std::endl;
+          std::cout << out.str() << std::endl;
+        }
         return sycl::malloc_host(bytes, queue);
       } else {
+        if(debug_){
+          std::ostringstream out;
+          out << "\tMalloc_device of " << bytes << " bytes." << std::endl;
+          std::cout << out.str() << std::endl;
+        }
         return sycl::malloc_device(bytes, queue);
       }
     }
