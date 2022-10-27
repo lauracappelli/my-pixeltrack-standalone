@@ -10,7 +10,6 @@ namespace cms::sycltools {
     static std::vector<sycl::device> temp;
     std::vector<sycl::device> cpus = sycl::device::get_devices(sycl::info::device_type::cpu);
     std::vector<sycl::device> gpus = sycl::device::get_devices(sycl::info::device_type::gpu);
-    std::vector<sycl::device> hosts = sycl::device::get_devices(sycl::info::device_type::host);
     for (auto it = cpus.begin(); it != cpus.end(); it++) {
       if (it + 1 == cpus.end()) {
         break;
@@ -36,7 +35,6 @@ namespace cms::sycltools {
       }
     }
     temp.insert(temp.end(), gpus.begin(), gpus.end());
-    temp.insert(temp.end(), hosts.begin(), hosts.end());
     return temp;
   }
 
