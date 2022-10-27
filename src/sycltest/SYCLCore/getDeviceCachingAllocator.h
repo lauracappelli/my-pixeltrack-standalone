@@ -47,7 +47,7 @@ namespace cms::sycltools {
 
   }  // namespace detail
 
-  inline CachingAllocator& getCachingAllocator(sycl::device const& device) {
+  inline CachingAllocator& getDeviceCachingAllocator(sycl::device const& device) {
     // initialise all allocators, one per device
     static auto allocators = detail::allocate_allocators();
 
