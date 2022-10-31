@@ -68,7 +68,7 @@ int main() {
   // define host and device sycl::device and the corresponing queues
   sycl::device host = cms::sycltools::chooseDevice(3, true);
   sycl::device device = cms::sycltools::chooseDevice(2, true);
-  sycl::queue host_queue = sycl::queue{sycl::cpu_selector()};
+  sycl::queue host_queue = sycl::queue(host);
   sycl::queue dev_queue = sycl::queue{sycl::gpu_selector()};
 
   unsigned int N = 1000;
@@ -77,12 +77,8 @@ int main() {
     vec[i] = i;
   }
 
+  // ptr1 - make_host with host_queue
   auto ptr1 = cms::sycltools::make_host_unique<int[]>(N * sizeof(int), host_queue);
-  auto ptr2 = cms::sycltools::make_host_unique<int[]>(N * sizeof(int), dev_queue);
-  auto ptr3 = cms::sycltools::make_device_unique<int[]>(N * sizeof(int), host_queue);
-  auto ptr4 = cms::sycltools::make_device_unique<int[]>(N * sizeof(int), dev_queue);
-
-  // ptr1
   int* int_ptr1 = ptr1.get();
   host_queue.memcpy(vec.data(), int_ptr1, N * sizeof(int));
   host_queue.wait();
@@ -91,7 +87,8 @@ int main() {
     int_ptr1[i] = 42;
   }
 
-  // ptr2
+  // ptr2 - make_host with dev_queue
+  auto ptr2 = cms::sycltools::make_host_unique<int[]>(N * sizeof(int), dev_queue);
   int* int_ptr2 = ptr2.get();
   dev_queue.memcpy(vec.data(), int_ptr2, N * sizeof(int));
   dev_queue.wait();
@@ -100,19 +97,21 @@ int main() {
     int_ptr2[i] = 42;
   }
 
-  // ptr3
+  // ptr3 - make_dev with dev_queue
+  auto ptr3 = cms::sycltools::make_device_unique<int[]>(N * sizeof(int), dev_queue);
   int* int_ptr3 = ptr3.get();
-  host_queue.memcpy(vec.data(), int_ptr3, N * sizeof(int));
-  host_queue.wait();
-
-  // ptr4
-  int* int_ptr4 = ptr4.get();
-  dev_queue.memcpy(vec.data(), int_ptr4, N * sizeof(int));
+  dev_queue.memcpy(vec.data(), int_ptr3, N * sizeof(int));
   dev_queue.wait();
-
-  // try this to seg fault
+  // // try this to seg fault
   // for (auto i=0; i < N; i++) {
-  //   int_ptr4[i] = 42;
+  //   int_ptr3[i] = 42;
   // }
+
+  // // ptr4 - make_dev with host_queue
+  // // try this to show a failed assertion
+  // auto ptr4 = cms::sycltools::make_device_unique<int[]>(N * sizeof(int), host_queue);
+  // int* int_ptr4 = ptr3.get();
+  // host_queue.memcpy(vec.data(), int_ptr4, N * sizeof(int));
+  // host_queue.wait();
 
 }
